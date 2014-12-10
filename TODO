@@ -1,0 +1,50 @@
+# Protocol support
+
+LLDP-MED with extra extensions is an open standard while all other
+protocols are proprietary. Maybe it's better to disable them?
+
+# privsep and users
+
+- Do they need to be removed? - at present they stay installed after pkg remove
+- They should only be created when privsep is enabled.
+
+Additionaly I don't know if we should assume defaults, or whether we should be
+explicit about creating a folder, pid etc.
+
+Also about the naming for the _lldpd users, we could leave things as is by default?
+Creating var/run/lldpd doesn't yet work.
+
+# snmp
+When SNMP is enabled, a ldd on lldpd binary says a dependency on Perl.
+However it's likely that this is just automatically sucked in since
+net-snmp itself depends on Perl.
+
+# libevent
+For lldpd 0.7.1 Vincent included an embedded libevent 2.0.5 but he
+prefers to use a system-provided libevent. I guess it's easier to just
+depend on it and be happy.
+
+# Static knob
+Should we provide a knob for static compilation (i.e. Gentoo provides such a use flag)
+
+# SECCOMP
+I guess that that this a Linux-only thing?
+
+# readline
+It automatically detects readline support, however should we support have a knob that explicitely
+enables/disables it?
+
+# pkg-plist
+How to take care of plist when a file only needs to be copied when the feature is enabled.
+
+# DOC 
+
+- Some doc-related features only work when doxygen has the required switches enabled.
+- Should we add a Readme.FreeBSD about the rights required to use lldpcli?
+
+
+# rc script
+The question being whether pid should be in /var/run instead of the default
+/usr/local/var/run
+
+Also the options stuff needs more love.
