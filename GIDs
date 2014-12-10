@@ -1,4 +1,4 @@
-# $FreeBSD$
+# $FreeBSD: head/GIDs 373766 2014-12-02 15:26:51Z matthew $
 # Please keep this file sorted by GID!
 # Please pick an empty slot when available and also consider base values from
 # /usr/src/etc/group
@@ -267,6 +267,7 @@ bbs:*:944:
 dbxml:*:945:
 gnokii:*:947:
 dnrd:*:948:
+_lldpd:*:949:
 conquest:*:950:
 openerpd:*:951:
 bitten-slave:*:952:
