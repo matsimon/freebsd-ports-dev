@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# $FreeBSD$
+#
+# PROVIDE: lldpd
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+# 
+# Add these lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+# 
+# lldpd_enable (bool):	Set to NO by default.
+#			Set it to YES to enable lldpd.
+# lldpd_config (path):	Set to /usr/local/etc/lldpd/lldpd.conf
+#			by default.
+
+. /etc/rc.subr
+
+name=lldpd
+rcvar=lldpd_enable
+
+load_rc_config $name
+
+: ${lldpd_enable:="NO"}
+: ${lldpd_config="/usr/local/etc/lldpd.conf"}
+
+command=/usr/local/sbin/${name}
+pidfile=/usr/local/var/run/${name}.pid
+
+command_args=""
+
+run_rc_command "$1"

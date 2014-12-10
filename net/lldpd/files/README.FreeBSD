@@ -1,0 +1,4 @@
+If you want to run lldpcli as normal user, just pout yourself in the
+the wheel group.
+
+-- Mathieu Simon <freebsd@simweb.ch>, Tue, 10 Dec 2014 13:40:00 +01:00
