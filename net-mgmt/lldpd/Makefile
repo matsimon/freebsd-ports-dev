@@ -3,7 +3,7 @@
 
 PORTNAME=	lldpd
 PORTVERSION=	0.7.12
-CATEGORIES=	net
+CATEGORIES=	net-mgmt
 MASTER_SITES=	http://media.luffy.cx/files/${PORTNAME}/
 
 MAINTAINER=	freebsd@simweb.ch
