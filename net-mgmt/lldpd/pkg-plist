@@ -1,11 +1,12 @@
 etc/bash_completion.d/lldpcli.bash-completion
 %%ETCDIR%%.d/README.conf
+etc/rc.d/lldpd
 include/lldp-const.h
 include/lldpctl.h
 lib/liblldpctl.a
-lib/liblldpctl.la
 lib/liblldpctl.so
-lib/liblldpctl.so.8
+lib/liblldpctl.so.4
+lib/liblldpctl.so.4.4.0
 lib/pkgconfig/lldpctl.pc
 man/man8/lldpcli.8.gz
 man/man8/lldpctl.8.gz
