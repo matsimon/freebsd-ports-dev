@@ -18,6 +18,7 @@ USE_RC_SUBR=	lldpd
 USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+#CONFIGURE_ENV+=	PKG_CONFIG_LIBDIR=/usr/local/var/libdata/pkgconfig
 CONFIGURE_ARGS=	--enable-privsep \
 		--with-privsep-chroot=/var/run/lldpd
 
