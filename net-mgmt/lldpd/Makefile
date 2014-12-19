@@ -15,53 +15,43 @@ RUN_DEPENDS=	libevent2>=2.0.5:${PORTSDIR}/devel/libevent2
 
 USE_RC_SUBR=	lldpd
 
+USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-privsep \
+		--with-privsep-chroot=/var/run/lldpd
 
 USERS=	_lldpd
 GROUPS=	_lldpd
 
-USES=	libtool
-CONFIGURE_ARGS=	--enable-privsep \
-		--with-privsep-chroot=/var/run/lldpd
+OPTIONS_GROUP=		DOCS
+OPTIONS_GROUP_DOCS=	CHI CHM DOT HTML PDF PS RTF XML
 
-OPTIONS_GROUP=		PROTO DOCS
-OPTIONS_GROUP_PROTO=	LLDP-MED DOT1 DOT3 CDP EDP FDP SONMP
-OPTIONS_GROUP_DOCS=	DOXY_DOT DOXY_MAN DOXY_RTF DOXY_XML DOXY_CHM \
-			DOXY_CHI DOXY_HTML DOXY_PS DOXY_PDF
-
-OPTIONS_DEFINE=		SNMP DTRACE XML JSON
-OPTIONS_DEFAULT=	CDP EDP FDP SONMP LLDP-MED DOT1 DOT3
+OPTIONS_DEFINE=		LLDP-MED DOT1 DOT3 PROPRIETARY DTRACE MAN JSON SNMP XML
+OPTIONS_DEFAULT=	LLDP-MED DOT1 DOT3 MAN
 
 # Descriptions
-PROTO_DESC=	Discovery Protocols
-CDP_DESC=	Cisco Discovery Protocol
-EDP_DESC=	Extreme Discovery Protocol
-FDP_DESC=	Foundry Discovery Protocol
-SONMP_DESC=	SynOptics Network Management Protocol
-LLDP-MED_DESC=	LLDP-MED extension
+PROPRIETARY_DESC=	Proprietary protocols (CDP/EDP/FDP/SONMP)
+LLDP-MED_DESC=	LLDP-MED extension (with VLAN and PHY features)
 DOT1_DESC=	Dot1 extension (VLAN stuff)
 DOT3_DESC=	Dot3 extension (PHY stuff)
 SNMP_DESC=	Enable the use of SNMP
 DTRACE_DESC=	DTrace support
-DOXY_DOT_DESC=	Generate graphics for doxygen documentation
-DOXY_MAN_DESC=	Generate doxygen manual pages
-DOXY_RTF_DESC=	Generate doxygen RTF documentation
-DOXY_XML_DESC=	Generate doxygen XML documentation
-DOXY_CHM_DESC=	Generate doxygen compressed HTML help documentation
-DOXY_CHI_DESC=	Generate doxygen seperate compressed HTML help index
-DOXY_HTML_DESC=	Generate doxygen plain HTML documentation
-DOXY_PS_DESC=	Generate doxygen PostScript documentation
-DOXY_PDF_DESC=	Generate doxygen PDF documentation
+
+CHM_DESC=	Generate doxygen compressed HTML help documentation
+CHI_DESC=	Generate doxygen seperate compressed HTML help index
+DOT_DESC=	Generate graphics for doxygen documentation
+MAN_DESC=	Generate doxygen manual pages
+RTF_DESC=	Generate doxygen RTF documentation
+XML_DESC=	Generate doxygen XML documentation
+HTML_DESC=	Generate doxygen plain HTML documentation
+PDF_DESC=	Generate doxygen PDF documentation
+PS_DESC=	Generate doxygen PostScript documentation
 
 # Protocol support
-CDP_CONFIGURE_ENABLE=		cdp
 DOT1_CONFIGURE_ENABLE=		dot1
 DOT3_CONFIGURE_ENABLE=		dot3
-EDP_CONFIGURE_ENABLE=		edp
-FDP_CONFIGURE_ENABLE=		fdp
 LLDP-MED_CONFIGURE_ENABLE=	lldpmed
-SONMP_CONFIGURE_ENABLE=		sonmp
 
 # Features
 DTRACE_CONFIGURE_ENABLE=	dtrace
@@ -70,32 +60,40 @@ SNMP_CONFIGURE_ENABLE=		snmp
 XML_CONFIGURE_WITH=		xml
 
 # Documentation
-DOXY_CHI_CONFIGURE_ENABLE=	doxygen-chi
-DOXY_CHM_CONFIGURE_ENABLE=	doxygen-chm
-DOXY_DOT_CONFIGURE_ENABLE=	doxygen-dot
-DOXY_HTML_CONFIGURE_ENABLE=	doxygen-html
-DOXY_MAN_CONFIGURE_ENABLE=	doxygen-man
-DOXY_PDF_CONFIGURE_ENABLE=	doxygen-ps
-DOXY_PS_CONFIGURE_ENABLE=	doxygen-pdf
-DOXY_RTF_CONFIGURE_ENABLE=	doxygen-rtf
-DOXY_XML_CONFIGURE_ENABLE=	doxygen-xml
+CHI_CONFIGURE_ENABLE=	doxygen-chi
+CHM_CONFIGURE_ENABLE=	doxygen-chm
+DOT_CONFIGURE_ENABLE=	doxygen-dot
+HTML_CONFIGURE_ENABLE=	doxygen-html
+MAN_CONFIGURE_ENABLE=	doxygen-man
+PDF_CONFIGURE_ENABLE=	doxygen-ps
+PS_CONFIGURE_ENABLE=	doxygen-pdf
+RTF_CONFIGURE_ENABLE=	doxygen-rtf
+XML_CONFIGURE_ENABLE=	doxygen-xml
 
 # Feature-induced dependencies
 XML_RUN_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
 SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
 JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
 JSON_RUN_DEPENDS=	jansson>=2:${PORTSDIR}/devel/jansson
-DOXY_CHI_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_CHM_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_DOT_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_HTML_BUILD_DEPENDS=doxygen:${PORTSDIR}/devel/doxygen
-DOXY_MAN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_PDF_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_PS_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_RTF_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOXY_XML_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+CHI_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+CHM_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+DOT_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+HTML_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+MAN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+PDF_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+PS_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+RTF_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
+XML_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
 
 post-stage:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/var/run/lldpd
+	@${MKDIR} ${STAGEDIR}/var/run/lldpd
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MPROPRIETARY}
+CONFIGURE_ARGS+=--enable-cdp --enable-edp --enable-fdp --enable-sonmp
+.else
+CONFIGURE_ARGS+=--disable-cdp --disable-edp --disable-fdp --disable-sonmp
+.endif
 
 .include <bsd.port.mk>

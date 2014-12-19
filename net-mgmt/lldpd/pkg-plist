@@ -19,4 +19,4 @@ sbin/lldpd
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/README.md
 share/zsh/vendor-completions/_lldpcli
-@dir var/run/lldpd
+@dir /var/run/lldpd
