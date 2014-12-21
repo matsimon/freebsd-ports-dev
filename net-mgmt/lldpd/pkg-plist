@@ -1,22 +1,21 @@
 etc/bash_completion.d/lldpcli.bash-completion
 %%ETCDIR%%.d/README.conf
-etc/rc.d/lldpd
 include/lldp-const.h
 include/lldpctl.h
 lib/liblldpctl.a
 lib/liblldpctl.so
 lib/liblldpctl.so.4
 lib/liblldpctl.so.4.4.0
-lib/pkgconfig/lldpctl.pc
+libdata/pkgconfig/lldpctl.pc
 man/man8/lldpcli.8.gz
 man/man8/lldpctl.8.gz
 man/man8/lldpd.8.gz
 sbin/lldpcli
 sbin/lldpctl
 sbin/lldpd
-%%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTE.md
-%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
-%%PORTDOCS%%%%DOCSDIR%%/NEWS
-%%PORTDOCS%%%%DOCSDIR%%/README.md
+%%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTE.md
+%%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/README.md
 share/zsh/vendor-completions/_lldpcli
 @dir /var/run/lldpd

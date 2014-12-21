@@ -11,14 +11,16 @@ COMMENT=	LLDP (802.1ab)/CDP/EDP/SONMP/FDP daemon and SNMP subagent
 
 LICENSE=	ISCL
 
-RUN_DEPENDS=	libevent2>=2.0.5:${PORTSDIR}/devel/libevent2
+LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
+
+OPTIONS_SUB=	yes
 
 USE_RC_SUBR=	lldpd
 
 USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-#CONFIGURE_ENV+=	PKG_CONFIG_LIBDIR=/usr/local/var/libdata/pkgconfig
+#CONFIGURE_ENV+=	PKG_CONFIG_LIBDIR=${PREFIX}/libdata/pkgconfig
 CONFIGURE_ARGS=	--enable-privsep \
 		--with-privsep-chroot=/var/run/lldpd
 
@@ -28,7 +30,7 @@ GROUPS=	_lldpd
 OPTIONS_GROUP=		DOCS
 OPTIONS_GROUP_DOCS=	CHI CHM DOT HTML PDF PS RTF XML
 
-OPTIONS_DEFINE=		LLDP-MED DOT1 DOT3 PROPRIETARY DTRACE MAN JSON SNMP XML
+OPTIONS_DEFINE=		LLDP-MED DOT1 DOT3 PROPRIETARY DTRACE MAN JSON SNMP DOCS
 OPTIONS_DEFAULT=	LLDP-MED DOT1 DOT3 MAN
 
 # Descriptions
@@ -88,6 +90,8 @@ XML_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
 
 post-stage:
 	@${MKDIR} ${STAGEDIR}/var/run/lldpd
+	${CP} ${STAGEDIR}${PREFIX}/lib/pkgconfig/* \
+	    ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.options.mk>
 
