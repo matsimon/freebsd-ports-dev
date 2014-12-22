@@ -48,13 +48,14 @@ XML_CONFIGURE_WITH=		xml
 XML_BUILD_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
 XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
-JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
-JSON_RUN_DEPENDS=	jansson>=2:${PORTSDIR}/devel/jansson
+JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf \
+			jansson:${PORTSDIR}/devel/jansson
+JSON_RUN_DEPENDS=	libjansson.so>=2:${PORTSDIR}/devel/jansson
 
 post-stage:
 	@${MKDIR} ${STAGEDIR}/var/run/lldpd
 	${CP} ${STAGEDIR}${PREFIX}/lib/pkgconfig/* \
-	    ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
+	${STAGEDIR}${PREFIX}/libdata/pkgconfig/
 
 .include <bsd.port.options.mk>
 
