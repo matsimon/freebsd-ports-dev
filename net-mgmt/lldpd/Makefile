@@ -30,14 +30,11 @@ GROUPS=	_lldpd
 OPTIONS_GROUP=		DOCS
 OPTIONS_GROUP_DOCS=	CHI CHM DOT HTML PDF PS RTF XML
 
-OPTIONS_DEFINE=		LLDP-MED DOT1 DOT3 PROPRIETARY DTRACE MAN JSON SNMP DOCS
-OPTIONS_DEFAULT=	LLDP-MED DOT1 DOT3 MAN
+OPTIONS_DEFINE=		PROPRIETARY DTRACE MAN JSON SNMP DOCS
+OPTIONS_DEFAULT=	PROPRIETARY MAN
 
 # Descriptions
 PROPRIETARY_DESC=	Proprietary protocols (CDP/EDP/FDP/SONMP)
-LLDP-MED_DESC=	LLDP-MED extension (with VLAN and PHY features)
-DOT1_DESC=	Dot1 extension (VLAN stuff)
-DOT3_DESC=	Dot3 extension (PHY stuff)
 SNMP_DESC=	Enable the use of SNMP
 DTRACE_DESC=	DTrace support
 
@@ -50,11 +47,6 @@ XML_DESC=	Generate doxygen XML documentation
 HTML_DESC=	Generate doxygen plain HTML documentation
 PDF_DESC=	Generate doxygen PDF documentation
 PS_DESC=	Generate doxygen PostScript documentation
-
-# Protocol support
-DOT1_CONFIGURE_ENABLE=		dot1
-DOT3_CONFIGURE_ENABLE=		dot3
-LLDP-MED_CONFIGURE_ENABLE=	lldpmed
 
 # Features
 DTRACE_CONFIGURE_ENABLE=	dtrace
