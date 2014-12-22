@@ -32,9 +32,10 @@ OPTIONS_DEFAULT=	PROPRIETARY
 
 # Descriptions
 DTRACE_DESC=		DTrace support
+JSON_DESC=		JSON output support
 PROPRIETARY_DESC=	Proprietary protocols (CDP/EDP/FDP/SONMP)
 SNMP_DESC=		Enable the use of SNMP
-XML_DESC=		XML output via libxml2
+XML_DESC=		XML output support
 
 # Features
 DTRACE_CONFIGURE_ENABLE=	dtrace
