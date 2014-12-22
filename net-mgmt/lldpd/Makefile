@@ -27,9 +27,6 @@ INSTALL_TARGET=	install-strip
 USERS=	_lldpd
 GROUPS=	_lldpd
 
-OPTIONS_GROUP=		DOCS
-OPTIONS_GROUP_DOCS=	CHI CHM DOT HTML PDF PS RTF XML
-
 OPTIONS_DEFINE=		DOCS DTRACE JSON MAN PROPRIETARY READLINE SNMP
 OPTIONS_DEFAULT=	PROPRIETARY MAN
 
@@ -37,15 +34,6 @@ OPTIONS_DEFAULT=	PROPRIETARY MAN
 PROPRIETARY_DESC=	Proprietary protocols (CDP/EDP/FDP/SONMP)
 SNMP_DESC=		Enable the use of SNMP
 DTRACE_DESC=		DTrace support
-CHM_DESC=		Generate doxygen compressed HTML help documentation
-CHI_DESC=		Generate doxygen seperate compressed HTML help index
-DOT_DESC=		Generate graphics for doxygen documentation
-MAN_DESC=		Generate doxygen manual pages
-RTF_DESC=		Generate doxygen RTF documentation
-XML_DESC=		Generate doxygen XML documentation
-HTML_DESC=		Generate doxygen plain HTML documentation
-PDF_DESC=		Generate doxygen PDF documentation
-PS_DESC=		Generate doxygen PostScript documentation
 
 # Features
 DTRACE_CONFIGURE_ENABLE=	dtrace
@@ -54,31 +42,11 @@ READLINE_CONFIGURE_WITH=	readline
 SNMP_CONFIGURE_ENABLE=		snmp
 XML_CONFIGURE_WITH=		xml
 
-# Documentation
-CHI_CONFIGURE_ENABLE=	doxygen-chi
-CHM_CONFIGURE_ENABLE=	doxygen-chm
-DOT_CONFIGURE_ENABLE=	doxygen-dot
-HTML_CONFIGURE_ENABLE=	doxygen-html
-MAN_CONFIGURE_ENABLE=	doxygen-man
-PDF_CONFIGURE_ENABLE=	doxygen-ps
-PS_CONFIGURE_ENABLE=	doxygen-pdf
-RTF_CONFIGURE_ENABLE=	doxygen-rtf
-XML_CONFIGURE_ENABLE=	doxygen-xml
-
 # Feature-induced dependencies
 XML_RUN_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
 SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
 JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
 JSON_RUN_DEPENDS=	jansson>=2:${PORTSDIR}/devel/jansson
-CHI_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-CHM_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-DOT_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-HTML_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-MAN_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-PDF_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-PS_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-RTF_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
-XML_BUILD_DEPENDS=	doxygen:${PORTSDIR}/devel/doxygen
 
 post-stage:
 	@${MKDIR} ${STAGEDIR}/var/run/lldpd
