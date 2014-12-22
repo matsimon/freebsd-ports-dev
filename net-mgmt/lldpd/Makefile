@@ -20,9 +20,9 @@ USE_RC_SUBR=	lldpd
 USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-#CONFIGURE_ENV+=	PKG_CONFIG_LIBDIR=${PREFIX}/libdata/pkgconfig
 CONFIGURE_ARGS=	--enable-privsep \
 		--with-privsep-chroot=/var/run/lldpd
+INSTALL_TARGET=	install-strip
 
 USERS=	_lldpd
 GROUPS=	_lldpd
@@ -35,18 +35,17 @@ OPTIONS_DEFAULT=	PROPRIETARY MAN
 
 # Descriptions
 PROPRIETARY_DESC=	Proprietary protocols (CDP/EDP/FDP/SONMP)
-SNMP_DESC=	Enable the use of SNMP
-DTRACE_DESC=	DTrace support
-
-CHM_DESC=	Generate doxygen compressed HTML help documentation
-CHI_DESC=	Generate doxygen seperate compressed HTML help index
-DOT_DESC=	Generate graphics for doxygen documentation
-MAN_DESC=	Generate doxygen manual pages
-RTF_DESC=	Generate doxygen RTF documentation
-XML_DESC=	Generate doxygen XML documentation
-HTML_DESC=	Generate doxygen plain HTML documentation
-PDF_DESC=	Generate doxygen PDF documentation
-PS_DESC=	Generate doxygen PostScript documentation
+SNMP_DESC=		Enable the use of SNMP
+DTRACE_DESC=		DTrace support
+CHM_DESC=		Generate doxygen compressed HTML help documentation
+CHI_DESC=		Generate doxygen seperate compressed HTML help index
+DOT_DESC=		Generate graphics for doxygen documentation
+MAN_DESC=		Generate doxygen manual pages
+RTF_DESC=		Generate doxygen RTF documentation
+XML_DESC=		Generate doxygen XML documentation
+HTML_DESC=		Generate doxygen plain HTML documentation
+PDF_DESC=		Generate doxygen PDF documentation
+PS_DESC=		Generate doxygen PostScript documentation
 
 # Features
 DTRACE_CONFIGURE_ENABLE=	dtrace
