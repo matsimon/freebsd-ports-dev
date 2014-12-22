@@ -27,13 +27,15 @@ INSTALL_TARGET=	install-strip
 USERS=	_lldpd
 GROUPS=	_lldpd
 
-OPTIONS_DEFINE=		DOCS DTRACE JSON MAN PROPRIETARY READLINE SNMP
+OPTIONS_DEFINE=		DOCS DTRACE JSON MAN PROPRIETARY READLINE SNMP XML
 OPTIONS_DEFAULT=	PROPRIETARY MAN
 
 # Descriptions
+DTRACE_DESC=		DTrace support
+MAN_DESC=		Install manpages
 PROPRIETARY_DESC=	Proprietary protocols (CDP/EDP/FDP/SONMP)
 SNMP_DESC=		Enable the use of SNMP
-DTRACE_DESC=		DTrace support
+XML_DESC=		XML output via libxml2
 
 # Features
 DTRACE_CONFIGURE_ENABLE=	dtrace
@@ -43,7 +45,8 @@ SNMP_CONFIGURE_ENABLE=		snmp
 XML_CONFIGURE_WITH=		xml
 
 # Feature-induced dependencies
-XML_RUN_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
+XML_BUILD_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
+XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
 JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
 JSON_RUN_DEPENDS=	jansson>=2:${PORTSDIR}/devel/jansson
