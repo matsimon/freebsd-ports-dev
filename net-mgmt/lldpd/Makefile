@@ -46,6 +46,7 @@ SNMP_CONFIGURE_ENABLE=		snmp
 XML_CONFIGURE_WITH=		xml
 
 # Feature-induced dependencies
+BASH_RUN_DEPENDS=	${LOCALBASE}/etc/bash-completion:${PORTSDIR}/shells/bash-completion
 XML_BUILD_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
 XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
