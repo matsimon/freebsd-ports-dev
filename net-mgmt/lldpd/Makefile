@@ -20,6 +20,7 @@ USE_RC_SUBR=	lldpd
 USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+PKG_CONFIG_LIBDIR=${PREFIX}/libdata/pkgconfig/
 CONFIGURE_ARGS=	--enable-privsep \
 		--with-privsep-chroot=/var/run/lldpd
 INSTALL_TARGET=	install-strip
