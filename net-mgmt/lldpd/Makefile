@@ -47,12 +47,12 @@ XML_CONFIGURE_WITH=		xml
 
 # Feature-induced dependencies
 BASH_RUN_DEPENDS=	${LOCALBASE}/etc/bash-completion:${PORTSDIR}/shells/bash-completion
-XML_BUILD_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
-XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
-SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
 JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf \
 			jansson:${PORTSDIR}/devel/jansson
 JSON_RUN_DEPENDS=	libjansson.so>=2:${PORTSDIR}/devel/jansson
+SNMP_RUN_DEPENDS=	net-snmp:${PORTSDIR}/net-mgmt/net-snmp
+XML_BUILD_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
+XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 post-stage:
 	@${MKDIR} ${STAGEDIR}/var/run/lldpd
