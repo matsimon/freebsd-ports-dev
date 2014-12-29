@@ -1,4 +1,4 @@
-etc/bash_completion.d/lldpcli.bash-completion
+%%BASH%%etc/bash_completion.d/lldpcli.bash-completion
 %%ETCDIR%%.d/README.conf
 include/lldp-const.h
 include/lldpctl.h
@@ -17,5 +17,5 @@ sbin/lldpd
 %%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/README.md
-share/zsh/vendor-completions/_lldpcli
+%%ZSH%%share/zsh/vendor-completions/_lldpcli
 @dir /var/run/lldpd
