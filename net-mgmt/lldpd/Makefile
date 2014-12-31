@@ -21,7 +21,7 @@ USES=		libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-privsep \
-		--with-privsep-chroot=/var/run/lldpd \
+		--with-privsep-chroot=/var/empty \
 		--with-lldpd-ctl-socket=/var/run/lldpd.socket \
 		--with-lldpd-pid-file=/var/run/lldpd.pid \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
@@ -53,7 +53,6 @@ XML_BUILD_DEPENDS=	libxml2:${PORTSDIR}/textproc/libxml2
 XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 post-stage:
-	@${MKDIR} ${STAGEDIR}/var/run/lldpd
 	@${CP} ${FILESDIR}/README.bsd ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.options.mk>

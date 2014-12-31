@@ -19,4 +19,3 @@ sbin/lldpd
 %%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/README.bsd
 %%DOCS%%%%PORTDOCS%%%%DOCSDIR%%/README.md
 %%ZSH%%share/zsh/vendor-completions/_lldpcli
-@dir /var/run/lldpd
