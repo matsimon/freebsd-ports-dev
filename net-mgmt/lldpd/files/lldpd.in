@@ -24,7 +24,7 @@ load_rc_config $name
 : ${lldpd_enable:="NO"}
 : ${lldpd_flags=""}
 
-command=/usr/local/sbin/${name}
+command=%%PREFIX%%/sbin/${name}
 pidfile=/var/run/${name}.pid
 
 command_args=${lldpd_flags}
