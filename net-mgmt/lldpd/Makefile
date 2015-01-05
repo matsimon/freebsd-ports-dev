@@ -47,9 +47,7 @@ XML_CONFIGURE_WITH=		xml
 
 JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
 JSON_LIB_DEPENDS=	libjansson.so:${PORTSDIR}/devel/jansson
-SNMP_LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp \
-			libnetsnmpagent.so:${PORTSDIR}/net-mgmt/net-snmp \
-			libnetsnmpmibs.so:${PORTSDIR}/net-mgmt/net-snmp
+SNMP_LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 post-stage:
