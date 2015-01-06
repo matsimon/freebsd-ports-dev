@@ -9,6 +9,8 @@ MASTER_SITES=	http://www.nta-monitor.com/tools/${PORTNAME}/download/
 MAINTAINER=	wenheping@gmail.com
 COMMENT=	ARP Scanning and Fingerprinting Tool
 
+LICENSE=	GPLv3
+
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
