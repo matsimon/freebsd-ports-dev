@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	arp-scan
-PORTVERSION=	1.8
+PORTVERSION=	1.9
 CATEGORIES=	net
-MASTER_SITES=	http://www.nta-monitor.com/tools/${PORTNAME}/download/
+MASTER_SITES=	http://www.nta-monitor.com/files/${PORTNAME}/
 
 MAINTAINER=	wenheping@gmail.com
-COMMENT=	ARP Scanning and Fingerprinting Tool
+COMMENT=	ARP scanning and fingerprinting tool
 
 LICENSE=	GPLv3
 
