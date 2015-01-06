@@ -45,8 +45,8 @@ READLINE_CONFIGURE_WITH=	readline
 SNMP_CONFIGURE_WITH=		snmp
 XML_CONFIGURE_WITH=		xml
 
-JSON_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
 JSON_LIB_DEPENDS=	libjansson.so:${PORTSDIR}/devel/jansson
+JSON_USES=		pkgconfig
 SNMP_LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
