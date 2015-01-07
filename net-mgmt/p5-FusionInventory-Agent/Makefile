@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	FusionInventory-Agent
-PORTVERSION=	2.2.5
+PORTVERSION=	2.3.15
 CATEGORIES=	net-mgmt
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CPAN:FUSINV
+MASTER_SITE_SUBDIR=	CPAN:GROUSSE
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	vg@FreeBSD.org
@@ -21,6 +21,7 @@ BUILD_DEPENDS=	p5-Text-Template>=0:${PORTSDIR}/textproc/p5-Text-Template \
 		p5-XML-TreePP>=0:${PORTSDIR}/textproc/p5-XML-TreePP \
 		p5-libwww>=0:${PORTSDIR}/www/p5-libwww \
 		p5-File-Which>=0:${PORTSDIR}/sysutils/p5-File-Which
+
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 TEST_DEPENDS=	p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception \
 		p5-Test-MockModule>=0:${PORTSDIR}/devel/p5-Test-MockModule \
