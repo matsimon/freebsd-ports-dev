@@ -16,11 +16,11 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	p5-Digest-MD5>=0:${PORTSDIR}/security/p5-Digest-MD5 \
 		p5-ExtUtils-MakeMaker>=6.59:${PORTSDIR}/devel/p5-ExtUtils-MakeMaker \
 		p5-File-Which>=0:${PORTSDIR}/sysutils/p5-File-Which \
-		p5-libwww>=0:${PORTSDIR}/www/p5-libwww \
+		p5-libwww>=5.8:${PORTSDIR}/www/p5-libwww \
 		p5-Net-IP>=0:${PORTSDIR}/net-mgmt/p5-Net-IP \
 		p5-Text-Template>=0:${PORTSDIR}/textproc/p5-Text-Template \
 		p5-UNIVERSAL-require>=0:${PORTSDIR}/devel/p5-UNIVERSAL-require \
-		p5-XML-TreePP>=0:${PORTSDIR}/textproc/p5-XML-TreePP \
+		p5-XML-TreePP>=0.26:${PORTSDIR}/textproc/p5-XML-TreePP \
 
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
