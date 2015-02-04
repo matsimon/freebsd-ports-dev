@@ -50,17 +50,17 @@ DAEMON_RUN_DEPENDS=	p5-Proc-Daemon>=0:${PORTSDIR}/devel/p5-Proc-Daemon \
 DEPLOY_RUN_DEPENDS=	p5-Archive-Extract>=0:${PORTSDIR}/archivers/p5-Archive-Extract \
 			p5-Digest-SHA>=0:${PORTSDIR}/security/p5-Digest-SHA \
 			p5-File-Copy-Recursive>=0:${PORTSDIR}/devel/p5-File-Copy-Recursive \
-			p5-JSON>=0:${PORTSDIR}/converts/p5-JSON \
-			p5-URI-Escape-XS>=0:${PORTSDIR}/www/p5-URI-Escape \
-			p5-POE-Component-Client-Ping>=0:${PORTSDIR}/net/p5-POE-Component-Client-Ping \
+			p5-JSON>=0:${PORTSDIR}/converters/p5-JSON \
+			p5-URI-Escape-XS>=0:${PORTSDIR}/www/p5-URI-Escape-XS \
+			p5-POE-Component-Client-Ping>=0:${PORTSDIR}/net/p5-POE-Component-Client-Ping
 HTTP_RUN_DEPENDS=	p5-HTTP-Daemon>=0:${PORTSDIR}/www/p5-HTTP-Daemon
-ZLIB_RUN_DEPENDS=	p5-Compress-Zlib>=0:${PORTSDIR}/archivers/p5-Compress-Zlib
+ZLIB_RUN_DEPENDS=	p5-IO-Compress>=0:${PORTSDIR}/archivers/p5-IO-Compress
 SSL_RUN_DEPENDS=	p5-IO-Socket-SSL>=1.14:${PORTSDIR}/security/p5-IO-Socket-SSL \
 			p5-LWP-Protocol-https>=0:${PORTSDIR}/www/p5-LWP-Protocol-https
 DMIDECODE_RUN_DEPENDS=	dmidecode:${PORTSDIR}/sysutils/dmidecode
 PCIUTILS_RUN_DEPENDS+=	lspci:${PORTSDIR}/sysutils/pciutils
-MMAP_RUN_DEPENDS+=	nmap:${PORTSDIR}/security/nmap
-WOL_RUN_DEPENDS=	p5-Net-Write>=0:{$PORTSDIR}/net/p5-Net-Write
+NMAP_RUN_DEPENDS+=	nmap:${PORTSDIR}/security/nmap
+WOL_RUN_DEPENDS=	p5-Net-Write>=0:${PORTSDIR}/net/p5-Net-Write
 
 post-patch:
 	@${FIND} ${WRKSRC} -type f \( -name '*.orig' \) -delete
