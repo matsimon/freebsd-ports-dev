@@ -13,12 +13,9 @@ LICENSE=	ISCL
 
 LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 
-OPTIONS_SUB=	yes
-
-USE_RC_SUBR=	lldpd
-
 USES=		libtool
 USE_LDCONFIG=	yes
+USE_RC_SUBR=	${PORTNAME}
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-privsep \
 		--with-privsep-chroot=/var/empty \
@@ -32,6 +29,7 @@ GROUPS=	_lldpd
 
 OPTIONS_DEFINE=		BASH DOCS DTRACE JSON PROPRIETARY READLINE SNMP XML ZSH
 OPTIONS_DEFAULT=	BASH JSON PROPRIETARY SNMP XML
+OPTIONS_SUB=	yes
 
 DTRACE_DESC=		DTrace support
 JSON_DESC=		JSON output support
@@ -44,21 +42,14 @@ JSON_CONFIGURE_WITH=		json
 READLINE_CONFIGURE_WITH=	readline
 SNMP_CONFIGURE_WITH=		snmp
 XML_CONFIGURE_WITH=		xml
+PROPRIETARY_CONFIGURE_ENABLE=	cdp edp fdp sonmp
 
 JSON_LIB_DEPENDS=	libjansson.so:${PORTSDIR}/devel/jansson
 JSON_USES=		pkgconfig
 SNMP_LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 XML_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
-post-stage:
-	@${CP} ${FILESDIR}/README.bsd ${STAGEDIR}${DOCSDIR}
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MPROPRIETARY}
-CONFIGURE_ARGS+=--enable-cdp --enable-edp --enable-fdp --enable-sonmp
-.else
-CONFIGURE_ARGS+=--disable-cdp --disable-edp --disable-fdp --disable-sonmp
-.endif
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/README.bsd ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
