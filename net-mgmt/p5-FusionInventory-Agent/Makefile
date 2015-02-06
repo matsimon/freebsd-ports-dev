@@ -28,13 +28,18 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-HTTP-Server-Simple-Authen>=0:${PORTSDIR}/www/p5-HTTP-Server-Simple-Authen \
 		p5-IO-Capture>=0:${PORTSDIR}/devel/p5-IO-Capture \
 		p5-IPC-Run>=0:${PORTSDIR}/devel/p5-IPC-Run \
+		p5-Test-Compile>=0:${PORTSDIR}/devel/p5-Test-Compile \
+		p5-Test-Deep>=0:${PORTSDIR}/devel/p5-Test-Deep \
 		p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception \
+		p5-Test-More>=0.93:${PORTSDIR}/devel/p5-Test-More \
 		p5-Test-MockModule>=0:${PORTSDIR}/devel/p5-Test-MockModule \
+		p5-Test-NoWarnings>=0:${PORTSDIR}/devel/p5-Test-NoWarnings \
 		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML \
 
 OPTIONS_DEFINE=	CUPS DAEMON DEPLOY HTTP ZLIB SSL DMIDECODE PCIUTILS NMAP WOL
 OPTIONS_DEFAULT=	ZLIB DMIDECODE PCIUTILS
 DAEMON_DESC=	Daemon mode
+DEPLOY_DEC=	Deployment support
 HTTP_DESC=	Local HTTP daemon
 ZLIB_DESC=	Zlib compression
 DMIDECODE_DESC=	Dmidecode hardware information
