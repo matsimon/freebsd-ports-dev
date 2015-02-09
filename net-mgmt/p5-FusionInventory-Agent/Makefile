@@ -20,9 +20,7 @@ BUILD_DEPENDS=	p5-Digest-MD5>=0:${PORTSDIR}/security/p5-Digest-MD5 \
 		p5-Net-IP>=0:${PORTSDIR}/net-mgmt/p5-Net-IP \
 		p5-Text-Template>=0:${PORTSDIR}/textproc/p5-Text-Template \
 		p5-UNIVERSAL-require>=0:${PORTSDIR}/devel/p5-UNIVERSAL-require \
-		p5-XML-TreePP>=0.26:${PORTSDIR}/textproc/p5-XML-TreePP \
-
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+		p5-XML-TreePP>=0.26:${PORTSDIR}/textproc/p5-XML-TreePP
 TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-HTTP-Server-Simple>=0:${PORTSDIR}/www/p5-HTTP-Server-Simple \
 		p5-HTTP-Server-Simple-Authen>=0:${PORTSDIR}/www/p5-HTTP-Server-Simple-Authen \
@@ -34,10 +32,12 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-Test-Simple>=0.93:${PORTSDIR}/devel/p5-Test-Simple \
 		p5-Test-MockModule>=0:${PORTSDIR}/devel/p5-Test-MockModule \
 		p5-Test-NoWarnings>=0:${PORTSDIR}/devel/p5-Test-NoWarnings \
-		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML \
+		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 OPTIONS_DEFINE=	CUPS DAEMON DEPLOY HTTP ZLIB SSL DMIDECODE PCIUTILS NMAP WOL
 OPTIONS_DEFAULT=	ZLIB DMIDECODE PCIUTILS
+
 DAEMON_DESC=	Daemon mode
 DEPLOY_DEC=	Deployment support
 HTTP_DESC=	Local HTTP daemon
