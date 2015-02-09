@@ -1,0 +1,2 @@
+Parse::EDID can parse the raw binary EDID data as a string and return
+a corresponding data structure as a hashref.
