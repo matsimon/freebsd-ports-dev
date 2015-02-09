@@ -70,4 +70,7 @@ WOL_RUN_DEPENDS=	p5-Net-Write>=0:${PORTSDIR}/net/p5-Net-Write
 post-patch:
 	@${FIND} ${WRKSRC} -type f \( -name '*.orig' \) -delete
 
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/README.bsd ${STAGEDIR}${DOCSDIR}
+
 .include <bsd.port.mk>

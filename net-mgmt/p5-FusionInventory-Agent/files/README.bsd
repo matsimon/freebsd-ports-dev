@@ -1,0 +1,8 @@
+Known issues and limitations specific to the FreeBSD port
+
+Display details obtained using EDID (Extended Display Identification Data)
+is currently not available on FreeBSD due to missing Parse::EDID port and 
+known-working tools for obtaining the EDID data in a way the FusionInventory
+agent knows how to handle them.
+
+-- Mathieu Simon <freebsd@simweb.ch>, Mon, 09 Feb 2015 21:30:00 +01:00
