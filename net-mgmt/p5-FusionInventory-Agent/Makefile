@@ -31,7 +31,7 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-Test-Compile>=0:${PORTSDIR}/devel/p5-Test-Compile \
 		p5-Test-Deep>=0:${PORTSDIR}/devel/p5-Test-Deep \
 		p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception \
-		p5-Test-More>=0.93:${PORTSDIR}/devel/p5-Test-More \
+		p5-Test-Simple>=0.93:${PORTSDIR}/devel/p5-Test-Simple \
 		p5-Test-MockModule>=0:${PORTSDIR}/devel/p5-Test-MockModule \
 		p5-Test-NoWarnings>=0:${PORTSDIR}/devel/p5-Test-NoWarnings \
 		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML \
