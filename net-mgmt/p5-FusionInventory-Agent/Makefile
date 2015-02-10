@@ -35,11 +35,12 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-OPTIONS_DEFINE=	CUPS DAEMON DEPLOY HTTP ZLIB SSL DMIDECODE PCIUTILS NMAP WOL
-OPTIONS_DEFAULT=	ZLIB DMIDECODE PCIUTILS
+OPTIONS_DEFINE=	CUPS DAEMON DEPLOY EDID HTTP ZLIB SSL DMIDECODE PCIUTILS NMAP WOL
+OPTIONS_DEFAULT=	ZLIB DAEMON DMIDECODE PCIUTILS
 
 DAEMON_DESC=	Daemon mode
-DEPLOY_DEC=	Deployment support
+DEPLOY_DESC=	Deployment support
+EDID_DESC=	EDID data support (for monitors, INCOMPLETE)
 HTTP_DESC=	Local HTTP daemon
 ZLIB_DESC=	Zlib compression
 DMIDECODE_DESC=	Dmidecode hardware information
@@ -58,6 +59,7 @@ DEPLOY_RUN_DEPENDS=	p5-Archive-Extract>=0:${PORTSDIR}/archivers/p5-Archive-Extra
 			p5-JSON>=0:${PORTSDIR}/converters/p5-JSON \
 			p5-URI-Escape-XS>=0:${PORTSDIR}/www/p5-URI-Escape-XS \
 			p5-POE-Component-Client-Ping>=0:${PORTSDIR}/net/p5-POE-Component-Client-Ping
+EDID_RUN_DEPENDS=	p5-Parse-EDID>=0:${PORTSDIR}/devel/p5-Parse-EDID
 HTTP_RUN_DEPENDS=	p5-HTTP-Daemon>=0:${PORTSDIR}/www/p5-HTTP-Daemon
 ZLIB_RUN_DEPENDS=	p5-IO-Compress>=0:${PORTSDIR}/archivers/p5-IO-Compress
 SSL_RUN_DEPENDS=	p5-IO-Socket-SSL>=1.14:${PORTSDIR}/security/p5-IO-Socket-SSL \
