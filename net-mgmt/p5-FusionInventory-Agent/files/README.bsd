@@ -1,14 +1,22 @@
-# Known issues and limitations on general BSD platforms
+# Known issues and limitations on FreeBSD
 
-Monitor/display data collection using EDID (Extended Display Identification
-Data) is not supported unless there is a known reliable ways to obtain the 
-required data on the BSDs.
+Notes based on FusionInventory agent 2.3.15 running on FreeBSD 10.1.
 
-# Known issues and limitations specific to the FreeBSD port
+## Deployment module
 
-Additionally to general BSD known issues the perl Module Parse::EDID is not
-yet ported.
+The state of the deployment functionality on FreeBSD is unknown, thus the
+option is not exposed in the port.
 
-The deployment module's behaviour on FreeBSD is untested and unknown.
+## No monitor data
+
+FusionInventory have a way on FreeBSD to obtain EDID (Extended Display 
+Idenfication Data) on FreeBSD, additionally the Perl module Parse::EDID
+needs to be ported and aded as dependency in order to interpret the binary
+EDID data.
+
+## Limited drive information
+
+On FreeBSD not so much data about disk drives can be collected as the agent
+doesn't use FreeBSD-specific tools like camcontrol to obtain this data.
 
 -- Mathieu Simon <freebsd@simweb.ch>, Mon, 09 Feb 2015 21:30:00 +01:00
