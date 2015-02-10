@@ -1,22 +1,26 @@
 # Known issues and limitations on FreeBSD
 
-Notes based on FusionInventory agent 2.3.15 running on FreeBSD 10.1.
+Notes based on FusionInventory agent 2.3.15 on FreeBSD 10.1.
 
-## Deployment module
+## Untested features
 
-The state of the deployment functionality on FreeBSD is unknown, thus the
-option is not exposed in the port.
+Deployment module: The state of the deployment functionality on FreeBSD 
+is unknown, thus the option is not exposed in the port.
 
-## No monitor data
+VMware remote inventory has not been tested on FreeBSD for now.
 
-FusionInventory have a way on FreeBSD to obtain EDID (Extended Display 
-Idenfication Data) on FreeBSD, additionally the Perl module Parse::EDID
-needs to be ported and aded as dependency in order to interpret the binary
-EDID data.
+## Missing features
 
-## Limited drive information
+### No monitor data
 
-On FreeBSD not so much data about disk drives can be collected as the agent
-doesn't use FreeBSD-specific tools like camcontrol to obtain this data.
+FusionInventory has not yet a way on FreeBSD to obtain EDID (Extended 
+Display Idenfication Data), additionally the Perl module Parse::EDID needs to
+be ported and aded as dependency in order to interpret the binary EDID 
+data.
+
+### Limited drive information
+
+On FreeBSD not so much data about disk drives is being collected as the agent
+doesn't use FreeBSD-specific tools like camcontrol to obtain this information.
 
 -- Mathieu Simon <freebsd@simweb.ch>, Mon, 09 Feb 2015 21:30:00 +01:00
