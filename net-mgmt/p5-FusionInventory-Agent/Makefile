@@ -35,17 +35,17 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-OPTIONS_DEFINE=	CUPS DAEMON DEPLOY EDID HTTP ZLIB SSL DMIDECODE PCIUTILS NMAP WOL
-OPTIONS_DEFAULT=	ZLIB DAEMON DMIDECODE PCIUTILS
+OPTIONS_DEFINE=	CUPS DAEMON DEPLOY DMIDECODE EDID HTTP NMAP PCIUTILS SSL WOL ZLIB
+OPTIONS_DEFAULT=	DAEMON DMIDECODE HTTP PCIUTILS SSL WOL ZLIB
 
 DAEMON_DESC=	Daemon mode
 DEPLOY_DESC=	Deployment support
+DMIDECODE_DESC=	Dmidecode hardware information
 EDID_DESC=	EDID data support (for monitors, INCOMPLETE)
 HTTP_DESC=	Local HTTP daemon
-ZLIB_DESC=	Zlib compression
-DMIDECODE_DESC=	Dmidecode hardware information
 PCIUTILS_DESC=	Pciutils hardware information
 WOL_DESC=	Wake on LAN support
+ZLIB_DESC=	Zlib compression
 
 USES=		gmake perl5
 USE_PERL5=	configure
@@ -59,15 +59,15 @@ DEPLOY_RUN_DEPENDS=	p5-Archive-Extract>=0:${PORTSDIR}/archivers/p5-Archive-Extra
 			p5-JSON>=0:${PORTSDIR}/converters/p5-JSON \
 			p5-URI-Escape-XS>=0:${PORTSDIR}/www/p5-URI-Escape-XS \
 			p5-POE-Component-Client-Ping>=0:${PORTSDIR}/net/p5-POE-Component-Client-Ping
+DMIDECODE_RUN_DEPENDS=	dmidecode:${PORTSDIR}/sysutils/dmidecode
 EDID_RUN_DEPENDS=	p5-Parse-EDID>=0:${PORTSDIR}/devel/p5-Parse-EDID
 HTTP_RUN_DEPENDS=	p5-HTTP-Daemon>=0:${PORTSDIR}/www/p5-HTTP-Daemon
-ZLIB_RUN_DEPENDS=	p5-IO-Compress>=0:${PORTSDIR}/archivers/p5-IO-Compress
+NMAP_RUN_DEPENDS+=	nmap:${PORTSDIR}/security/nmap
+PCIUTILS_RUN_DEPENDS+=	lspci:${PORTSDIR}/sysutils/pciutils
 SSL_RUN_DEPENDS=	p5-IO-Socket-SSL>=1.14:${PORTSDIR}/security/p5-IO-Socket-SSL \
 			p5-LWP-Protocol-https>=0:${PORTSDIR}/www/p5-LWP-Protocol-https
-DMIDECODE_RUN_DEPENDS=	dmidecode:${PORTSDIR}/sysutils/dmidecode
-PCIUTILS_RUN_DEPENDS+=	lspci:${PORTSDIR}/sysutils/pciutils
-NMAP_RUN_DEPENDS+=	nmap:${PORTSDIR}/security/nmap
 WOL_RUN_DEPENDS=	p5-Net-Write>=0:${PORTSDIR}/net/p5-Net-Write
+ZLIB_RUN_DEPENDS=	p5-IO-Compress>=0:${PORTSDIR}/archivers/p5-IO-Compress
 
 post-patch:
 	@${FIND} ${WRKSRC} -type f \( -name '*.orig' \) -delete
