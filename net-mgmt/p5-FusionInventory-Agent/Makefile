@@ -35,17 +35,15 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-OPTIONS_DEFINE=	CUPS DAEMON DEPLOY DMIDECODE HTTP NETDISC NETINV PCIUTILS 
-SSL VMWARE WOL ZLIB
+OPTIONS_DEFINE=	CUPS DAEMON DMIDECODE HTTP NETDISC NETINV PCIUTILS SSL VMWARE WOL ZLIB
 OPTIONS_DEFAULT=	DAEMON DMIDECODE HTTP NETDISC NETINV PCIUTILS SSL WOL ZLIB
 OPTIONS_SUB=	yes
 
 DAEMON_DESC=	Allow the agent to run as daemon
-DEPLOY_DESC=	Deployment support
 DMIDECODE_DESC=	Dmidecode hardware information
 HTTP_DESC=	Local HTTP daemon
 NETDISC_DESC=	Network discovery
-NETDINV_DESC=	Network inventory
+NETINV_DESC=	Network inventory
 PCIUTILS_DESC=	Pciutils hardware information
 VMWARE_DESC=	VMware vCenter/ESXi/ESX remote inventory
 WOL_DESC=	Wake on LAN support
@@ -57,12 +55,6 @@ USE_PERL5=	configure
 CUPS_RUN_DEPENDS=	p5-Net-CUPS>=0.6:${PORTSDIR}/print/p5-Net-CUPS
 DAEMON_RUN_DEPENDS=	p5-Proc-Daemon>=0:${PORTSDIR}/devel/p5-Proc-Daemon \
 			p5-Proc-PID-File>=0:${PORTSDIR}/devel/p5-Proc-PID-File
-DEPLOY_RUN_DEPENDS=	p5-Archive-Extract>=0:${PORTSDIR}/archivers/p5-Archive-Extract \
-			p5-Digest-SHA>=0:${PORTSDIR}/security/p5-Digest-SHA \
-			p5-File-Copy-Recursive>=0:${PORTSDIR}/devel/p5-File-Copy-Recursive \
-			p5-JSON>=0:${PORTSDIR}/converters/p5-JSON \
-			p5-URI-Escape-XS>=0:${PORTSDIR}/www/p5-URI-Escape-XS \
-			p5-POE-Component-Client-Ping>=0:${PORTSDIR}/net/p5-POE-Component-Client-Ping
 DMIDECODE_RUN_DEPENDS=	dmidecode:${PORTSDIR}/sysutils/dmidecode
 HTTP_RUN_DEPENDS=	p5-HTTP-Daemon>=0:${PORTSDIR}/www/p5-HTTP-Daemon
 NETDISC_RUN_DEPENDS=	nmap:${PORTSDIR}/security/nmap \
