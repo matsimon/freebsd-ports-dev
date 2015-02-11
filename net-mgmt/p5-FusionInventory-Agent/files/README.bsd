@@ -9,18 +9,17 @@ is unknown, thus the option is not exposed in the port.
 
 VMware remote inventory has not been tested on FreeBSD for now.
 
-## Missing features
+## Restriction on FreeBSD
 
 ### No monitor data
 
-FusionInventory has not yet a way on FreeBSD to obtain EDID (Extended 
-Display Idenfication Data), additionally the Perl module Parse::EDID needs to
-be ported and aded as dependency in order to interpret the binary EDID 
-data.
+FusionInventory has not yet a way on FreeBSD to obtain EDID (Extended Display
+Idenfication Data), additionally the Perl module Parse::EDID needs to be ported
+and aded as dependency in order to interpret the binary EDID data.
 
 ### Limited drive information
 
 On FreeBSD not so much data about disk drives is being collected as the agent
-doesn't use FreeBSD-specific tools like camcontrol to obtain this information.
+doesn't use FreeBSD-specific ways to obtain this information.
 
 -- Mathieu Simon <freebsd@simweb.ch>, Mon, 09 Feb 2015 21:30:00 +01:00
