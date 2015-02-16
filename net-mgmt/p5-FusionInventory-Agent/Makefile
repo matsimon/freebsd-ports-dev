@@ -35,6 +35,9 @@ TEST_DEPENDS=	p5-HTTP-Proxy>=0:${PORTSDIR}/www/p5-HTTP-Proxy \
 		p5-YAML>=0:${PORTSDIR}/textproc/p5-YAML
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+CONFLICTS=	p5-FusionInventory-Agent-Task-NetDiscovery-* \
+		p5-FusionInventory-Agent-Task-SNMPQuery-*
+
 OPTIONS_DEFINE=	CUPS DAEMON DMIDECODE DOCS HTTP NETDISC NETINV PCIUTILS SSL VMWARE WOL ZLIB
 OPTIONS_DEFAULT=	DAEMON DMIDECODE DOCS HTTP NETDISC NETINV PCIUTILS SSL VMWARE WOL ZLIB
 OPTIONS_SUB=	yes
@@ -74,8 +77,8 @@ post-patch:
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/README.bsd ${STAGEDIR}${DOCSDIR}
 
-.if ${PORT_OPTIONS:DAEMON}
+#.if ${PORT_OPTIONS:DAEMON}
 USE_RC_SUBR=	fusioninventory
-.endif
+#.endif
 
- .include <bsd.port.mk>
+.include <bsd.port.mk>
