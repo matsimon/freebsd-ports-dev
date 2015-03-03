@@ -10,7 +10,7 @@
 # to enable this service:
 #
 # fusioninventory_enable (bool):	Set to NO by default.
-#					Set to YES to enable lldpd.
+#					Set to YES to enable fusioninventory-agent
 
 . /etc/rc.subr
 

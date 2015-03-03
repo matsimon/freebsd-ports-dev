@@ -1,5 +1,5 @@
-fusioninventory-agent is an agent for different inventory server like
-FusionInventory for GLPI or cofiguration management server such as Rudder.
+fusioninventory-agent is an agent for different inventory servers like
+FusionInventory for GLPI or configuration management server such as Rudder.
 It creates a local inventory of the machines (hardware and software) and
 sends it to a configured server. It can also write results to a local XML file.
 This agent started as a fork of the unified UNIX agent for OCSng but has since
