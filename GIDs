@@ -94,6 +94,7 @@ trircd:*:154:
 xorp:*:155:
 monetdb:*:156:
 barman:*:157:
+nocat:*:159:
 sfs:*:171:
 agk:*:172:
 polipo:*:173:
@@ -158,6 +159,8 @@ rancid:*:286:
 backuppc:*:300:
 _sphinx:*:312:
 dkfilter:*:325:
+smfs:*:326:
+orthanc:*:330:
 daapd:*:337:
 murmur:*:338:
 wildfire:*:340:
@@ -177,6 +180,9 @@ courier:*:465:
 condor:*:466:
 netmon:*:467:
 slurm:*:468:
+consul:*:469:
+serf:*:470:
+vault:*:471:
 _bbstored:*:505:
 radmind:*:506:
 skkserv:*:507:
@@ -227,8 +233,12 @@ netdisco:*:840:
 tcpcryptd:*:841:
 munin:*:842:
 dahdi:*:843:asterisk
+subsonic:*:844:
 fossy:*:901:www
 scanlogd:*:902:
+influxd:*:907:
+riemann:*:908:
+proxy65:*:909:
 bacula:*:910:
 iserv:*:911:
 _sj3:*:912:
@@ -292,7 +302,6 @@ boinc:*:973:
 radicale:*:974:
 unifi:*:975:
 minetest:*:976:
-sguil:*:978:
 ums:*:979:
 hbase:*:980:
 uvncrep:*:981:
@@ -302,7 +311,14 @@ tvheadend:*:984:
 puppetdb:*:985:
 kamailio:*:986:
 spark:*:987:
-mediabrowser:*:989:
+emby:*:989:
+oozie:*:990:
+sguil:*:991:
+hive:*:992:
+kannel:*:993:
+rcynic:*:994:
+rpkirtr:*:995:
+tarantool:*:996:
 ebnetd:*:999:
 nogroup:*:65533:
 nobody:*:65534:
