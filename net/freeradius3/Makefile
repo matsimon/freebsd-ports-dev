@@ -70,7 +70,9 @@ SQLITE3_CONFIGURE_WITH=	rlm_sql_sqlite
 SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
+
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
+PGSQL_USES=		pgsql
 
 REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
@@ -152,11 +154,7 @@ PLIST_SUB+=	MYSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USES+=		pgsql
-PLIST_SUB+=	PGSQL=""
 _REQUIRE+=	postgresql
-.else
-PLIST_SUB+=	PGSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MUNIXODBC}
