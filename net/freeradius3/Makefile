@@ -157,12 +157,6 @@ PLIST_SUB+=	MYSQL="@comment "
 _REQUIRE+=	postgresql
 .endif
 
-.if ${PORT_OPTIONS:MUNIXODBC}
-PLIST_SUB+=	UNIXODBC=""
-.else
-PLIST_SUB+=	UNIXODBC="@comment "
-.endif
-
 .if ${PORT_OPTIONS:MFIREBIRD}
 USE_FIREBIRD=	YES
 CONFIGURE_ARGS+=--with-rlm_sql_firebird
