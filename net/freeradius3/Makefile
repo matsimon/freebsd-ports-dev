@@ -72,6 +72,9 @@ SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 
+REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
+REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
+
 UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
 UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
 
@@ -203,15 +206,6 @@ PLIST_SUB+=	RLMRUBY="@comment "
 # rlm_ruby module is still experimental
 .if ${PORT_OPTIONS:MRUBY} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
-.endif
-
-.if ${PORT_OPTIONS:MREDIS}
-LIB_DEPENDS+=	libhiredis.so:${PORTSDIR}/databases/hiredis
-CONFIGURE_ARGS+=--with-rlm_redis --with-rlm_rediswho
-PLIST_SUB+=	RLMREDIS=""
-.else
-CONFIGURE_ARGS+=--without-rlm_redis --without-rlm_rediswho
-PLIST_SUB+=	RLMREDIS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MREST}
