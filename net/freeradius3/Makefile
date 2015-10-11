@@ -32,6 +32,7 @@ USES=		gmake shebangfix tar:bzip2
 SHEBANG_FILES=	src/modules/rlm_counter/rad_counter scripts/sql/radsqlrelay
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
+CONFIGURE_ARGS=	--with-udpfromto
 # Prevent /root/.rnd leftover
 MAKE_ARGS+=	HOME=/dev/null
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -42,7 +43,7 @@ PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=	USER KERBEROS HEIMDAL HEIMDAL_PORT LDAP MYSQL \
 		PGSQL UNIXODBC FIREBIRD REDIS PYTHON RUBY \
-		EXPERIMENTAL UDPFROMTO DEVELOPER EDIR PERL REST \
+		EXPERIMENTAL DEVELOPER EDIR PERL REST \
 		FREETDS IDN SSL_PORT DOCS SQLITE3
 OPTIONS_DEFAULT=USER PERL
 OPTIONS_SUB=	yes
@@ -245,11 +246,6 @@ CONFIGURE_ARGS+=--enable-developer
 CFLAGS!=	${ECHO} ${CFLAGS} | ${SED} -Ee 's:-O[0-9]?[[:space:]]*::g'
 .else
 CONFIGURE_ARGS+=--quiet
-.endif
-
-# Compile in UDPFROMTO support
-.if ${PORT_OPTIONS:MUDPFROMTO}
-CONFIGURE_ARGS+=--with-udpfromto
 .endif
 
 .if ${PORT_OPTIONS:MSSL_PORT}
