@@ -40,12 +40,12 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
-OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	USER KERBEROS HEIMDAL HEIMDAL_PORT LDAP MYSQL \
 		PGSQL UNIXODBC FIREBIRD REDIS PYTHON RUBY \
 		EXPERIMENTAL UDPFROMTO DEVELOPER EDIR PERL REST \
 		FREETDS IDN SSL_PORT DOCS SQLITE3
 OPTIONS_DEFAULT=USER PERL
+OPTIONS_SUB=	yes
 
 USER_DESC=		Run as user freeradius, group freeradius
 HEIMDAL_DESC=		With Heimdal Kerberos support
@@ -59,8 +59,21 @@ EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 
-SQLITE3_CONFIGURE_WITH=rlm_sql_sqlite
+
+FREETDS_CONFIGURE_WITH=	rlm_freetds
+FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
+
+LDAP_CONFIGURE_WITH=	with-rlm_ldap
+LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+
+SQLITE3_CONFIGURE_WITH=	rlm_sql_sqlite
 SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+
+MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
+PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
+
+UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
+UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
 
 .include <bsd.port.options.mk>
 
@@ -115,41 +128,31 @@ CONFIGURE_ARGS+=--without-edir
 
 .if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=	YES
-LIB_DEPENDS+=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
-CONFIGURE_ARGS+=--with-rlm_ldap
 PLIST_SUB+=	LDAP=""
 _REQUIRE+=	slapd
 .else
-CONFIGURE_ARGS+=--without-rlm_ldap
 PLIST_SUB+=	LDAP="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=	YES
-CONFIGURE_ARGS+=--with-rlm_sql_mysql
 PLIST_SUB+=	MYSQL=""
 _REQUIRE+=	mysql
 .else
-CONFIGURE_ARGS+=--without-rlm_sql_mysql
 PLIST_SUB+=	MYSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
 USES+=		pgsql
-CONFIGURE_ARGS+=--with-rlm_sql_postgresql
 PLIST_SUB+=	PGSQL=""
 _REQUIRE+=	postgresql
 .else
-CONFIGURE_ARGS+=--without-rlm_sql_postgresql
 PLIST_SUB+=	PGSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MUNIXODBC}
-CONFIGURE_ARGS+=--with-rlm_sql_unixodbc
 PLIST_SUB+=	UNIXODBC=""
-LIB_DEPENDS+=	libodbc.so:${PORTSDIR}/databases/unixODBC
 .else
-CONFIGURE_ARGS+=--without-rlm_sql_unixodbc
 PLIST_SUB+=	UNIXODBC="@comment "
 .endif
 
@@ -235,11 +238,8 @@ EXPM=		yes
 .endif
 
 .if ${PORT_OPTIONS:MFREETDS}
-LIB_DEPENDS+=	libct.so:${PORTSDIR}/databases/freetds
-CONFIGURE_ARGS+=--with-rlm_freetds
 PLIST_SUB+=	RLMFREETDS=""
 .else
-CONFIGURE_ARGS+=--without-rlm_freetds
 PLIST_SUB+=	RLMFREETDS="@comment "
 .endif
 
