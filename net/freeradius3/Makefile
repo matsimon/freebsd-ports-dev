@@ -227,11 +227,6 @@ CONFIGURE_ARGS+=--without-rlm_rest
 PLIST_SUB+=	RLMREST="@comment "
 .endif
 
-# rest module is still experimental
-.if ${PORT_OPTIONS:MREST} && empty(PORT_OPTIONS:MEXPERIMENTAL)
-EXPM=		yes
-.endif
-
 .if ${PORT_OPTIONS:MFREETDS}
 PLIST_SUB+=	RLMFREETDS=""
 .else
