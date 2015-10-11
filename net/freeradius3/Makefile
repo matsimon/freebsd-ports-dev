@@ -214,11 +214,6 @@ CONFIGURE_ARGS+=--without-rlm_redis --without-rlm_rediswho
 PLIST_SUB+=	RLMREDIS="@comment "
 .endif
 
-# redis module is still experimental
-.if ${PORT_OPTIONS:MREDIS} && empty(PORT_OPTIONS:MEXPERIMENTAL)
-EXPM=		yes
-.endif
-
 .if ${PORT_OPTIONS:MREST}
 LIB_DEPENDS+=	libjson-c.so:${PORTSDIR}/devel/json-c \
     		libcurl.so:${PORTSDIR}/ftp/curl
