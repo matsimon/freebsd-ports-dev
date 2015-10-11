@@ -75,6 +75,12 @@ PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
 
+REST_CONFIGURE_WITH=	rlm_rest libcurl=${LOCALBASE} \
+			jsonc-lib-dir=${LOCALBASE}/lib \
+			jsonc-include-dir=${LOCALBASE}/include
+REST_LIB_DEPENDS=	libjson-c.so:${PORTSDIR}/devel/json-c \
+			libcurl.so:${PORTSDIR}/ftp/curl
+
 UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
 UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
 
@@ -206,19 +212,6 @@ PLIST_SUB+=	RLMRUBY="@comment "
 # rlm_ruby module is still experimental
 .if ${PORT_OPTIONS:MRUBY} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
-.endif
-
-.if ${PORT_OPTIONS:MREST}
-LIB_DEPENDS+=	libjson-c.so:${PORTSDIR}/devel/json-c \
-    		libcurl.so:${PORTSDIR}/ftp/curl
-CONFIGURE_ARGS+=--with-rlm_rest \
-		--with-libcurl=${LOCALBASE} \
-		--with-jsonc-lib-dir=${LOCALBASE}/lib \
-		--with-jsonc-include-dir=${LOCALBASE}/include
-PLIST_SUB+=	RLMREST=""
-.else
-CONFIGURE_ARGS+=--without-rlm_rest
-PLIST_SUB+=	RLMREST="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MFREETDS}

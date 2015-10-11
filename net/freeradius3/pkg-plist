@@ -231,9 +231,9 @@ include/freeradius/udpfromto.h
 %%PGSQL%%%%LIBDIR%%/rlm_sql_postgresql.a
 %%PGSQL%%%%LIBDIR%%/rlm_sql_postgresql.la
 %%PGSQL%%%%LIBDIR%%/rlm_sql_postgresql.so
-%%RLMREST%%%%LIBDIR%%/rlm_rest.a
-%%RLMREST%%%%LIBDIR%%/rlm_rest.la
-%%RLMREST%%%%LIBDIR%%/rlm_rest.so
+%%REST%%%%LIBDIR%%/rlm_rest.a
+%%REST%%%%LIBDIR%%/rlm_rest.la
+%%REST%%%%LIBDIR%%/rlm_rest.so
 %%UNIXODBC%%%%LIBDIR%%/rlm_sql_unixodbc.a
 %%UNIXODBC%%%%LIBDIR%%/rlm_sql_unixodbc.la
 %%UNIXODBC%%%%LIBDIR%%/rlm_sql_unixodbc.so
