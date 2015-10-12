@@ -73,6 +73,7 @@ LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 LDAP_USE=		OPENLDAP=yes
 
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
+MYSQL_USE=		MYSQL=yes
 
 PERL_CONFIGURE_ARGS=	perl rlm_perl
 PERL_USES=		perl5
@@ -151,11 +152,7 @@ _REQUIRE+=	slapd
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
-USE_MYSQL=	YES
-PLIST_SUB+=	MYSQL=""
 _REQUIRE+=	mysql
-.else
-PLIST_SUB+=	MYSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
