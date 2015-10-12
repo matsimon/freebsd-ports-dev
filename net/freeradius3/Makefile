@@ -107,10 +107,14 @@ SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
 UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
 
-.include <bsd.port.options.mk>
-
 # Default requirements for rc script
 _REQUIRE=	NETWORKING SERVERS
+
+LDAP_VARS=	_REQUIRE+=slapd
+MYSQL_VARS=	_REQUIRE+=mysql
+PGSQL_VARS=	_REQUIRE+=postgresql
+
+.include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MUSER}
 SUB_LIST+=	RUN_AS_USER="yes"
@@ -151,18 +155,6 @@ PLIST_SUB+=	KRB5="@comment "
 
 .if ${PORT_OPTIONS:MEDIR} && empty(PORT_OPTIONS:MLDAP)
 PORT_OPTIONS+=	LDAP
-.endif
-
-.if ${PORT_OPTIONS:MLDAP}
-_REQUIRE+=	slapd
-.endif
-
-.if ${PORT_OPTIONS:MMYSQL}
-_REQUIRE+=	mysql
-.endif
-
-.if ${PORT_OPTIONS:MPGSQL}
-_REQUIRE+=	postgresql
 .endif
 
 # Firebird module is still experimental
