@@ -219,9 +219,9 @@ include/freeradius/udpfromto.h
 %%EXPM%%%%FIREBIRD%%%%LIBDIR%%/rlm_sql_firebird.a
 %%EXPM%%%%FIREBIRD%%%%LIBDIR%%/rlm_sql_firebird.la
 %%EXPM%%%%FIREBIRD%%%%LIBDIR%%/rlm_sql_firebird.so
-%%EXPM%%%%RLMFREETDS%%%%LIBDIR%%/rlm_sql_freetds.a
-%%EXPM%%%%RLMFREETDS%%%%LIBDIR%%/rlm_sql_freetds.la
-%%EXPM%%%%RLMFREETDS%%%%LIBDIR%%/rlm_sql_freetds.so
+%%EXPM%%%%FREETDS%%%%LIBDIR%%/rlm_sql_freetds.a
+%%EXPM%%%%FREETDS%%%%LIBDIR%%/rlm_sql_freetds.la
+%%EXPM%%%%FREETDS%%%%LIBDIR%%/rlm_sql_freetds.so
 %%MYSQL%%%%LIBDIR%%/rlm_sql_mysql.a
 %%MYSQL%%%%LIBDIR%%/rlm_sql_mysql.la
 %%MYSQL%%%%LIBDIR%%/rlm_sql_mysql.so

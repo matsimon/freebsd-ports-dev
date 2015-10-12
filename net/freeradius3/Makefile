@@ -53,6 +53,7 @@ HEIMDAL_DESC=		With Heimdal Kerberos support
 HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
 UNIXODBC_DESC=		With unixODBC database support
 FIREBIRD_DESC=		With Firebird database support (EXPERIMENTAL)
+FREETDS_DESC=		With FreeTDS database support (EXPERIMENTAL)
 EXPERIMENTAL_DESC=	Build experimental modules
 UDPFROMTO_DESC=		Compile in UDPFROMTO support
 DEVELOPER_DESC=		Enable developer options
@@ -205,12 +206,6 @@ PLIST_SUB+=	RLMRUBY="@comment "
 # rlm_ruby module is still experimental
 .if ${PORT_OPTIONS:MRUBY} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
-.endif
-
-.if ${PORT_OPTIONS:MFREETDS}
-PLIST_SUB+=	RLMFREETDS=""
-.else
-PLIST_SUB+=	RLMFREETDS="@comment "
 .endif
 
 # freetds module is still experimental
