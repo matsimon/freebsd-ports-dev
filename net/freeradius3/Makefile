@@ -67,9 +67,6 @@ FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 LDAP_CONFIGURE_WITH=	with-rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 
-SQLITE3_CONFIGURE_WITH=	rlm_sql_sqlite
-SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
-
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 
 PERL_CONFIGURE_ARGS=	perl rlm_perl
@@ -77,14 +74,17 @@ PERL_CONFIGURE_ARGS=	perl rlm_perl
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 PGSQL_USES=		pgsql
 
-REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
+REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 
 REST_CONFIGURE_WITH=	rlm_rest libcurl=${LOCALBASE} \
 			jsonc-lib-dir=${LOCALBASE}/lib \
 			jsonc-include-dir=${LOCALBASE}/include
 REST_LIB_DEPENDS=	libjson-c.so:${PORTSDIR}/devel/json-c \
 			libcurl.so:${PORTSDIR}/ftp/curl
+
+SQLITE3_CONFIGURE_WITH=	rlm_sql_sqlite
+SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
 UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
