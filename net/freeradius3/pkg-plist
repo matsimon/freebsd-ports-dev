@@ -177,9 +177,9 @@ include/freeradius/udpfromto.h
 %%LIBDIR%%/rlm_passwd.a
 %%LIBDIR%%/rlm_passwd.la
 %%LIBDIR%%/rlm_passwd.so
-%%RLMPERL%%%%LIBDIR%%/rlm_perl.a
-%%RLMPERL%%%%LIBDIR%%/rlm_perl.la
-%%RLMPERL%%%%LIBDIR%%/rlm_perl.so
+%%PERL%%%%LIBDIR%%/rlm_perl.a
+%%PERL%%%%LIBDIR%%/rlm_perl.la
+%%PERL%%%%LIBDIR%%/rlm_perl.so
 %%LIBDIR%%/rlm_preprocess.a
 %%LIBDIR%%/rlm_preprocess.la
 %%LIBDIR%%/rlm_preprocess.so
@@ -548,7 +548,7 @@ sbin/radmin
 %%EXAMPLESDIR%%/raddb/mods-config/files/accounting
 %%EXAMPLESDIR%%/raddb/mods-config/files/authorize
 %%EXAMPLESDIR%%/raddb/mods-config/files/pre-proxy
-%%RLMPERL%%%%EXAMPLESDIR%%/raddb/mods-config/perl/example.pl
+%%PERL%%%%EXAMPLESDIR%%/raddb/mods-config/perl/example.pl
 %%EXAMPLESDIR%%/raddb/mods-config/preprocess/hints
 %%EXAMPLESDIR%%/raddb/mods-config/preprocess/huntgroups
 %%RLMPYTHON%%%%EXAMPLESDIR%%/raddb/mods-config/python/example.py
