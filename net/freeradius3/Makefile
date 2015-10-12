@@ -72,6 +72,8 @@ SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 
+PERL_CONFIGURE_ARGS=	perl rlm_perl
+
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 PGSQL_USES=		pgsql
 
@@ -174,11 +176,6 @@ EXPM=		yes
 
 .if ${PORT_OPTIONS:MPERL}
 USES+=		perl5
-CONFIGURE_ARGS+=--with-rlm_perl
-PLIST_SUB+=	RLMPERL=""
-.else
-CONFIGURE_ARGS+=--without-perl --without-rlm_perl
-PLIST_SUB+=	RLMPERL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
