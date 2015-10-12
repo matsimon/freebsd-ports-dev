@@ -95,8 +95,8 @@ REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
 REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 
 REST_CONFIGURE_WITH=	rlm_rest libcurl=${LOCALBASE} \
-			jsonc-lib-dir=${LOCALBASE}/lib \
-			jsonc-include-dir=${LOCALBASE}/include
+REST_CONFIGURE_ON=	--with-jsonc-lib-dir=${LOCALBASE}/lib \
+			--with-jsonc-include-dir=${LOCALBASE}/include
 REST_LIB_DEPENDS=	libjson-c.so:${PORTSDIR}/devel/json-c \
 			libcurl.so:${PORTSDIR}/ftp/curl
 
