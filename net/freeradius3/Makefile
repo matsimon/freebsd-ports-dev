@@ -86,6 +86,11 @@ PERL_USES=		perl5
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 PGSQL_USES=		pgsql
 
+PYTHON_USES=		python
+PYTHON_CONFIGURE_WITH=	with-rlm_python
+PYTHON_CONFIGURE_ON=	--with-rlm-python-lib-dir=${PYTHON_LIBDIR} \
+			--with-rlm-python-include-dir=${PYTHON_INCLUDEDIR}
+
 REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
 REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 
@@ -162,17 +167,6 @@ _REQUIRE+=	postgresql
 # Firebird module is still experimental
 .if ${PORT_OPTIONS:MFIREBIRD} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
-.endif
-
-.if ${PORT_OPTIONS:MPYTHON}
-USES+=		python
-CONFIGURE_ARGS+=--with-rlm_python \
-		--with-rlm-python-lib-dir=${PYTHON_LIBDIR} \
-		--with-rlm-python-include-dir=${PYTHON_INCLUDEDIR}
-PLIST_SUB+=	RLMPYTHON=""
-.else
-CONFIGURE_ARGS+=--without-rlm_python
-PLIST_SUB+=	RLMPYTHON="@comment "
 .endif
 
 # freetds module is still experimental

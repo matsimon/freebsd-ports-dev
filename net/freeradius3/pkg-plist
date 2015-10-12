@@ -183,9 +183,9 @@ include/freeradius/udpfromto.h
 %%LIBDIR%%/rlm_preprocess.a
 %%LIBDIR%%/rlm_preprocess.la
 %%LIBDIR%%/rlm_preprocess.so
-%%RLMPYTHON%%%%LIBDIR%%/rlm_python.a
-%%RLMPYTHON%%%%LIBDIR%%/rlm_python.la
-%%RLMPYTHON%%%%LIBDIR%%/rlm_python.so
+%%PYTHON%%%%LIBDIR%%/rlm_python.a
+%%PYTHON%%%%LIBDIR%%/rlm_python.la
+%%PYTHON%%%%LIBDIR%%/rlm_python.so
 %%LIBDIR%%/rlm_radutmp.a
 %%LIBDIR%%/rlm_radutmp.la
 %%LIBDIR%%/rlm_radutmp.so
@@ -515,7 +515,7 @@ sbin/radmin
 %%EXAMPLESDIR%%/raddb/mods-available/passwd
 %%PERL%%%%EXAMPLESDIR%%/raddb/mods-available/perl
 %%EXAMPLESDIR%%/raddb/mods-available/preprocess
-%%EXAMPLESDIR%%/raddb/mods-available/python
+%%PYTHON%%%%EXAMPLESDIR%%/raddb/mods-available/python
 %%EXAMPLESDIR%%/raddb/mods-available/radutmp
 %%EXAMPLESDIR%%/raddb/mods-available/realm
 %%EXAMPLESDIR%%/raddb/mods-available/redis
@@ -548,8 +548,8 @@ sbin/radmin
 %%PERL%%%%EXAMPLESDIR%%/raddb/mods-config/perl/example.pl
 %%EXAMPLESDIR%%/raddb/mods-config/preprocess/hints
 %%EXAMPLESDIR%%/raddb/mods-config/preprocess/huntgroups
-%%RLMPYTHON%%%%EXAMPLESDIR%%/raddb/mods-config/python/example.py
-%%RLMPYTHON%%%%EXAMPLESDIR%%/raddb/mods-config/python/radiusd.py
+%%PYTHON%%%%EXAMPLESDIR%%/raddb/mods-config/python/example.py
+%%PYTHON%%%%EXAMPLESDIR%%/raddb/mods-config/python/radiusd.py
 %%EXAMPLESDIR%%/raddb/mods-config/sql/counter/mysql/dailycounter.conf
 %%EXAMPLESDIR%%/raddb/mods-config/sql/counter/mysql/expire_on_login.conf
 %%EXAMPLESDIR%%/raddb/mods-config/sql/counter/mysql/monthlycounter.conf
