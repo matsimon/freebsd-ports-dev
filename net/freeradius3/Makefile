@@ -73,7 +73,7 @@ FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 IDN_CONFIGURE_WITH=	rlm_idn
 IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
 
-LDAP_CONFIGURE_WITH=	with-rlm_ldap
+LDAP_CONFIGURE_WITH=	rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 LDAP_USE=		OPENLDAP=yes
 
