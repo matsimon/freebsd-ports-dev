@@ -210,9 +210,6 @@ include/freeradius/udpfromto.h
 %%REDIS%%%%LIBDIR%%/rlm_rediswho.a
 %%REDIS%%%%LIBDIR%%/rlm_rediswho.la
 %%REDIS%%%%LIBDIR%%/rlm_rediswho.so
-%%EXPM%%%%RLMRUBY%%%%LIBDIR%%/rlm_ruby.a
-%%EXPM%%%%RLMRUBY%%%%LIBDIR%%/rlm_ruby.la
-%%EXPM%%%%RLMRUBY%%%%LIBDIR%%/rlm_ruby.so
 %%LIBDIR%%/rlm_sql.a
 %%LIBDIR%%/rlm_sql.la
 %%LIBDIR%%/rlm_sql.so
