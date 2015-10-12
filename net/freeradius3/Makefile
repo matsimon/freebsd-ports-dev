@@ -42,9 +42,10 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=	USER KERBEROS HEIMDAL HEIMDAL_PORT LDAP MYSQL \
-		PGSQL UNIXODBC FIREBIRD REDIS PYTHON \
-		EXPERIMENTAL DEVELOPER EDIR PERL REST \
-		FREETDS IDN SSL_PORT DOCS SQLITE3
+		PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL DEVELOPER \
+		EDIR PERL REST SSL_PORT DOCS SQLITE3
+OPTIONS_GROUP=	EXPERIMENTAL
+OPTIONS_GROUP_EXPERIMENTAL=	FIREBIRD FREETDS IDN
 OPTIONS_DEFAULT=USER PERL
 OPTIONS_SUB=	yes
 
@@ -52,14 +53,14 @@ USER_DESC=		Run as user freeradius, group freeradius
 HEIMDAL_DESC=		With Heimdal Kerberos support
 HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
 UNIXODBC_DESC=		With unixODBC database support
-FIREBIRD_DESC=		With Firebird database support (EXPERIMENTAL)
-FREETDS_DESC=		With FreeTDS database support (EXPERIMENTAL)
+FIREBIRD_DESC=		With Firebird database support
+FREETDS_DESC=		With FreeTDS database support
 EXPERIMENTAL_DESC=	Build experimental modules
 DEVELOPER_DESC=		Enable developer options
 EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
-IDN_DESC=		International Domain Names support (EXPERIMENTAL)
+IDN_DESC=		International Domain Names support
 
 
 EDIR_CONFIGURE_WITH=	with-edir
