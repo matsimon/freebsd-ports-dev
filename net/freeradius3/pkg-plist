@@ -513,7 +513,7 @@ sbin/radmin
 %%EXAMPLESDIR%%/raddb/mods-available/pam
 %%EXAMPLESDIR%%/raddb/mods-available/pap
 %%EXAMPLESDIR%%/raddb/mods-available/passwd
-%%EXAMPLESDIR%%/raddb/mods-available/perl
+%%PERL%%%%EXAMPLESDIR%%/raddb/mods-available/perl
 %%EXAMPLESDIR%%/raddb/mods-available/preprocess
 %%EXAMPLESDIR%%/raddb/mods-available/python
 %%EXAMPLESDIR%%/raddb/mods-available/radutmp

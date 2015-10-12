@@ -74,6 +74,7 @@ LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 
 PERL_CONFIGURE_ARGS=	perl rlm_perl
+PERL_USES=		perl5
 
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 PGSQL_USES=		pgsql
@@ -176,10 +177,6 @@ PLIST_SUB+=	FIREBIRD="@comment "
 # Firebird module is still experimental
 .if ${PORT_OPTIONS:MFIREBIRD} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
-.endif
-
-.if ${PORT_OPTIONS:MPERL}
-USES+=		perl5
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
