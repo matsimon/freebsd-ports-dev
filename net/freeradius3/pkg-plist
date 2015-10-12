@@ -501,7 +501,7 @@ sbin/radmin
 %%EXAMPLESDIR%%/raddb/mods-available/inner-eap
 %%EXAMPLESDIR%%/raddb/mods-available/ippool
 %%EXAMPLESDIR%%/raddb/mods-available/krb5
-%%EXAMPLESDIR%%/raddb/mods-available/ldap
+%%LDAP%%%%EXAMPLESDIR%%/raddb/mods-available/ldap
 %%EXAMPLESDIR%%/raddb/mods-available/linelog
 %%EXAMPLESDIR%%/raddb/mods-available/logintime
 %%EXAMPLESDIR%%/raddb/mods-available/mac2ip

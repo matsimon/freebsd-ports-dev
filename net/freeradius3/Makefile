@@ -70,6 +70,7 @@ IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
 
 LDAP_CONFIGURE_WITH=	with-rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+LDAP_USE=		OPENLDAP=yes
 
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 
@@ -146,11 +147,7 @@ CONFIGURE_ARGS+=--without-edir
 .endif
 
 .if ${PORT_OPTIONS:MLDAP}
-USE_OPENLDAP=	YES
-PLIST_SUB+=	LDAP=""
 _REQUIRE+=	slapd
-.else
-PLIST_SUB+=	LDAP="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
