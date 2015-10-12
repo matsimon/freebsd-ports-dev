@@ -61,6 +61,9 @@ REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support (EXPERIMENTAL)
 
+
+EDIR_CONFIGURE_WITH=	with-edir
+
 FIREBIRD_CONFIGURE_WITH=rlm_sql_firebird
 FIREBIRD_USE=		FIREBIRD=yes
 
@@ -140,13 +143,8 @@ CONFIGURE_ARGS+=--without-rlm_krb5
 PLIST_SUB+=	KRB5="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MEDIR}
-CONFIGURE_ARGS+=--with-edir
-.if empty(PORT_OPTIONS:MLDAP)
+.if ${PORT_OPTIONS:MEDIR} && empty(PORT_OPTIONS:MLDAP)
 PORT_OPTIONS+=	LDAP
-.endif
-.else
-CONFIGURE_ARGS+=--without-edir
 .endif
 
 .if ${PORT_OPTIONS:MLDAP}
