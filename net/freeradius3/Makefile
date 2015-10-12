@@ -55,7 +55,6 @@ UNIXODBC_DESC=		With unixODBC database support
 FIREBIRD_DESC=		With Firebird database support (EXPERIMENTAL)
 FREETDS_DESC=		With FreeTDS database support (EXPERIMENTAL)
 EXPERIMENTAL_DESC=	Build experimental modules
-UDPFROMTO_DESC=		Compile in UDPFROMTO support
 DEVELOPER_DESC=		Enable developer options
 EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
