@@ -62,6 +62,9 @@ REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support (EXPERIMENTAL)
 
+FIREBIRD_CONFIGURE_WITH=rlm_sql_firebird
+FIREBIRD_USE=		FIREBIRD=yes
+
 FREETDS_CONFIGURE_WITH=	rlm_freetds
 FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 
@@ -157,15 +160,6 @@ _REQUIRE+=	mysql
 
 .if ${PORT_OPTIONS:MPGSQL}
 _REQUIRE+=	postgresql
-.endif
-
-.if ${PORT_OPTIONS:MFIREBIRD}
-USE_FIREBIRD=	YES
-CONFIGURE_ARGS+=--with-rlm_sql_firebird
-PLIST_SUB+=	FIREBIRD=""
-.else
-CONFIGURE_ARGS+=--without-rlm_sql_firebird
-PLIST_SUB+=	FIREBIRD="@comment "
 .endif
 
 # Firebird module is still experimental
