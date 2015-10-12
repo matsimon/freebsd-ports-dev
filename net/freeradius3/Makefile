@@ -42,7 +42,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=	USER KERBEROS HEIMDAL HEIMDAL_PORT LDAP MYSQL \
-		PGSQL UNIXODBC FIREBIRD REDIS PYTHON RUBY \
+		PGSQL UNIXODBC FIREBIRD REDIS PYTHON \
 		EXPERIMENTAL DEVELOPER EDIR PERL REST \
 		FREETDS IDN SSL_PORT DOCS SQLITE3
 OPTIONS_DEFAULT=USER PERL
@@ -193,21 +193,6 @@ CONFIGURE_ARGS+=--without-rlm_python
 PLIST_SUB+=	RLMPYTHON="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MRUBY}
-IGNORE=		with ruby support leaks memory, breaks signal handling.  Please disable RUBY support
-USE_RUBY=	yes
-CONFIGURE_ARGS+=--with-rlm_ruby
-PLIST_SUB+=	RLMRUBY=""
-.else
-CONFIGURE_ARGS+=--without-rlm_ruby --with-ruby=no
-PLIST_SUB+=	RLMRUBY="@comment "
-.endif
-
-# rlm_ruby module is still experimental
-.if ${PORT_OPTIONS:MRUBY} && empty(PORT_OPTIONS:MEXPERIMENTAL)
-EXPM=		yes
-.endif
-
 # freetds module is still experimental
 .if ${PORT_OPTIONS:MFREETDS} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
@@ -218,9 +203,19 @@ EXPM=		yes
 EXPM=		yes
 .endif
 
+# Notes:
+# --without-rlm_couchbase:
+# With 3.0.10 when any or one certain experimental modules were enabled it
+# wanted to configure rlm_couchbase.
+# As long as it's unsupported by the port, explicitely disable it.
+#
+# --without-rlm_ruby:
+# Last checked with 3.0.10: rlm_ruby's code contains a large warning that it
+# leaks memory. That's why it was explicitely disabled.
 .if ${PORT_OPTIONS:MEXPERIMENTAL} || defined(EXPM)
 CONFIGURE_ARGS+=--with-experimental-modules \
-                --without-rlm_couchbase
+                --without-rlm_couchbase \
+		--without-rlm_ruby
 PLIST_SUB+=	EXPM=""
 .else
 CONFIGURE_ARGS+=--without-experimental-modules
@@ -312,9 +307,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|LIBS|KRB5LIBS|g' ${WRKSRC}/src/modules/rlm_krb5/configure
 	@${REINPLACE_CMD} -e 's|-lkrb5|$$(${KRB5_CONFIG})|g' \
 		${WRKSRC}/src/modules/rlm_krb5/configure
-.endif
-.if empty(PORT_OPTIONS:MRUBY)
-	@${RM} -fr ${WRKSRC}/src/modules/rlm_ruby/
 .endif
 
 post-build:
