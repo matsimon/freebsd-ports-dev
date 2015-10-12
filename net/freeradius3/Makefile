@@ -59,10 +59,13 @@ DEVELOPER_DESC=		Enable developer options
 EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
-
+IDN_DESC=		International Domain Names support (EXPERIMENTAL)
 
 FREETDS_CONFIGURE_WITH=	rlm_freetds
 FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
+
+IDN_CONFIGURE_WITH=	rlm_idn
+IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
 
 LDAP_CONFIGURE_WITH=	with-rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
@@ -215,22 +218,14 @@ PLIST_SUB+=	RLMFREETDS="@comment "
 EXPM=		yes
 .endif
 
-.if ${PORT_OPTIONS:MIDN}
-LIB_DEPENDS+=	libidn.so:${PORTSDIR}/dns/libidn
-CONFIGURE_ARGS+=--with-rlm_idn
-PLIST_SUB+=	RLMIDN=""
-.else
-CONFIGURE_ARGS+=--without-rlm_idn
-PLIST_SUB+=	RLMIDN="@comment "
-.endif
-
-# freetds module is still experimental
+# IDN module is still experimental
 .if ${PORT_OPTIONS:MIDN} && empty(PORT_OPTIONS:MEXPERIMENTAL)
 EXPM=		yes
 .endif
 
 .if ${PORT_OPTIONS:MEXPERIMENTAL} || defined(EXPM)
-CONFIGURE_ARGS+=--with-experimental-modules
+CONFIGURE_ARGS+=--with-experimental-modules \
+                --without-rlm_couchbase
 PLIST_SUB+=	EXPM=""
 .else
 CONFIGURE_ARGS+=--without-experimental-modules

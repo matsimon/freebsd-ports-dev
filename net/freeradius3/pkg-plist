@@ -99,9 +99,9 @@ include/freeradius/udpfromto.h
 %%LIBDIR%%/rlm_dynamic_clients.a
 %%LIBDIR%%/rlm_dynamic_clients.la
 %%LIBDIR%%/rlm_dynamic_clients.so
-%%EXPM%%%%LIBDIR%%/rlm_idn.a
-%%EXPM%%%%LIBDIR%%/rlm_idn.la
-%%EXPM%%%%LIBDIR%%/rlm_idn.so
+%%EXPM%%%%IDN%%%%LIBDIR%%/rlm_idn.a
+%%EXPM%%%%IDN%%%%LIBDIR%%/rlm_idn.la
+%%EXPM%%%%IDN%%%%LIBDIR%%/rlm_idn.so
 %%LIBDIR%%/rlm_eap.a
 %%LIBDIR%%/rlm_eap.la
 %%LIBDIR%%/rlm_eap.so
@@ -284,7 +284,7 @@ man/man5/rlm_detail.5.gz
 man/man5/rlm_digest.5.gz
 man/man5/rlm_expr.5.gz
 man/man5/rlm_files.5.gz
-man/man5/rlm_idn.5.gz
+%%EXPM%%%%IDN%%man/man5/rlm_idn.5.gz
 man/man5/rlm_mschap.5.gz
 man/man5/rlm_pap.5.gz
 man/man5/rlm_passwd.5.gz
@@ -500,7 +500,7 @@ sbin/radmin
 %%EXAMPLESDIR%%/raddb/mods-available/expiration
 %%EXAMPLESDIR%%/raddb/mods-available/expr
 %%EXAMPLESDIR%%/raddb/mods-available/files
-%%EXAMPLESDIR%%/raddb/mods-available/idn
+%%EXPM%%%%IDN%%%%EXAMPLESDIR%%/raddb/mods-available/idn
 %%EXAMPLESDIR%%/raddb/mods-available/inner-eap
 %%EXAMPLESDIR%%/raddb/mods-available/ippool
 %%EXAMPLESDIR%%/raddb/mods-available/krb5
