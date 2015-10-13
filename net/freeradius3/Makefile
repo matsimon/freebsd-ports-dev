@@ -81,7 +81,8 @@ LDAP_USE=		OPENLDAP=yes
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 MYSQL_USE=		MYSQL=yes
 
-PERL_CONFIGURE_ARGS=	perl rlm_perl
+PERL_CONFIGURE_WITH=	rlm_perl
+PERL_CONFIGURE_ON=	--with-perl
 PERL_USES=		perl5
 
 PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
