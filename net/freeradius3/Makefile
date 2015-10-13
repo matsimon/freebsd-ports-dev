@@ -248,7 +248,7 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 CONFIGURE_ARGS+=--with-pic
 .endif
 
-SUB_FILES+=	pkg-install pkg-message
+SUB_FILES+=	pkg-install
 SUB_LIST+=	RADIUS_USER="${RADIUS_USER}" \
 		RADIUS_GROUP="${RADIUS_GROUP}" \
 		RADDB_WORK="${WRKSRC}/raddb" \
