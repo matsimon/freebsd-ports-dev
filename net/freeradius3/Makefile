@@ -236,7 +236,6 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--without-rlm_opendirectory \
 		--without-rlm_sql_db2 \
 		--without-rlm_sql_iodbc \
-		--without-rlm_sql_sybase \
 		--without-rlm_yubikey \
 		--without-rlm_sql_oracle \
 		--without-rlm_securid \
