@@ -233,7 +233,6 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--localstatedir=/var \
 		--without-rlm_eap_ikev2 \
 		--without-rlm_eap_tnc \
-		--without-rlm_eap2 \
 		--without-rlm_opendirectory \
 		--without-rlm_sql_db2 \
 		--without-rlm_sql_iodbc \
