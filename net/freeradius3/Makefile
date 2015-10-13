@@ -75,8 +75,12 @@ FIREBIRD_USE=		FIREBIRD=yes
 FREETDS_CONFIGURE_WITH=	rlm_freetds
 FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 
+HEIMDAL_PORT_LIB_DEPENDS=libkrb5.so.26:${PORTSDIR}/security/heimdal
+
 IDN_CONFIGURE_WITH=	rlm_idn
 IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
+
+KERBEROS_LIB_DEPENDS=	libkrb5.so.3:${PORTSDIR}/security/krb5
 
 LDAP_CONFIGURE_WITH=	rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
@@ -137,11 +141,9 @@ GROUPS=		${RADIUS_GROUP}
 .if ${PORT_OPTIONS:MKERBEROS} || ${PORT_OPTIONS:MHEIMDAL}
 .if ${PORT_OPTIONS:MHEIMDAL}
 .if ${PORT_OPTIONS:MHEIMDAL_PORT}
-LIB_DEPENDS+=	libkrb5.so:${PORTSDIR}/security/heimdal
 .endif
 CONFIGURE_ARGS+=--enable-heimdal-krb5 --enable-pthread-support
 .else
-LIB_DEPENDS+=	libkrb5support.so:${PORTSDIR}/security/krb5
 .endif
 CONFIGURE_ARGS+=--with-rlm_krb5
 .if ${PORT_OPTIONS:MHEIMDAL} && empty(PORT_OPTIONS:MHEIMDAL_PORT)
