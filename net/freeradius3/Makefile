@@ -41,7 +41,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=		USER LDAP MYSQL \
-			PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL DEVELOPER \
+			PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL \
 			EDIR PERL REST SSL_PORT DOCS SQLITE3
 OPTIONS_GROUP=		EXP
 OPTIONS_GROUP_EXP=	FIREBIRD FREETDS IDN
@@ -59,7 +59,6 @@ FIREBIRD_DESC=		With Firebird database support
 FREETDS_DESC=		With FreeTDS database support
 EXP_DESC=		Build experimental modules
 EXPERIMENTAL_DESC=	Build experimental modules
-DEVELOPER_DESC=		Enable developer options
 EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
@@ -184,14 +183,6 @@ PLIST_SUB+=	EXPM=""
 .else
 CONFIGURE_ARGS+=--without-experimental-modules
 PLIST_SUB+=	EXPM="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MDEVELOPER}
-CONFIGURE_ARGS+=--enable-developer
-# Turn off compiler optimisations
-CFLAGS!=	${ECHO} ${CFLAGS} | ${SED} -Ee 's:-O[0-9]?[[:space:]]*::g'
-.else
-CONFIGURE_ARGS+=--quiet
 .endif
 
 .if ${PORT_OPTIONS:MSSL_PORT}
