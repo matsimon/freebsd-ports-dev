@@ -21,7 +21,6 @@ LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm \
 		libtalloc.so:${PORTSDIR}/devel/talloc
 
 LOGDIR?=	/var/log
-KRB5_CONFIG?=	/usr/bin/krb5-config --libs
 
 CONFLICTS_INSTALL=	gnu-radius-[0-9].* openradius-[0-9].* radiusd-cistron-[0-9].* \
 		freeradius-mysql-[0-9].* freeradius-[^3].*
@@ -66,7 +65,6 @@ REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support
 
-
 EDIR_CONFIGURE_WITH=	with-edir
 
 FIREBIRD_CONFIGURE_WITH=rlm_sql_firebird
@@ -75,12 +73,18 @@ FIREBIRD_USE=		FIREBIRD=yes
 FREETDS_CONFIGURE_WITH=	rlm_freetds
 FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 
+HEIMDAL_CONFIGURE_ON=	--with-rlm_krb5 --with-rlm-krb5-dir=/
+
 HEIMDAL_PORT_LIB_DEPENDS=libkrb5.so.26:${PORTSDIR}/security/heimdal
+HEIMDAL_PORT_CONFIGURE_ON=	--with-rlm_krb5 \
+				--with-rlm-krb5-dir=${LOCALBASE}
 
 IDN_CONFIGURE_WITH=	rlm_idn
 IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
 
 KERBEROS_LIB_DEPENDS=	libkrb5.so.3:${PORTSDIR}/security/krb5
+KERBEROS_CONFIGURE_ON=	--with-rlm_krb5 \
+			--with-rlm-krb5-dir=${LOCALBASE}
 
 LDAP_CONFIGURE_WITH=	rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
@@ -138,26 +142,10 @@ RADIUS_GROUP=	freeradius
 USERS=		${RADIUS_USER}
 GROUPS=		${RADIUS_GROUP}
 
-.if ${PORT_OPTIONS:MKERBEROS} || ${PORT_OPTIONS:MHEIMDAL}
-.if ${PORT_OPTIONS:MHEIMDAL}
-.if ${PORT_OPTIONS:MHEIMDAL_PORT}
-.endif
-CONFIGURE_ARGS+=--enable-heimdal-krb5 --enable-pthread-support
+.if ${PORT_OPTIONS:MHEIMDAL} || ${PORT_OPTIONS:MHEIMDAL_PORT} || ${PORT_OPTIONS:MKERBEROS}
+PLIST_SUB+=    KRB5=""
 .else
-.endif
-CONFIGURE_ARGS+=--with-rlm_krb5
-.if ${PORT_OPTIONS:MHEIMDAL} && empty(PORT_OPTIONS:MHEIMDAL_PORT)
-CONFIGURE_ARGS+=--with-rlm-krb5-lib-dir=/usr/lib
-CONFIGURE_ARGS+=--with-rlm-krb5-include-dir=/usr/include
-CONFIGURE_ENV+=	KRB5LIBS="$$(${KRB5_CONFIG})"
-.else
-CONFIGURE_ARGS+=--with-rlm-krb5-lib-dir=${LOCALBASE}/lib
-CONFIGURE_ARGS+=--with-rlm-krb5-include-dir=${LOCALBASE}/include
-.endif
-PLIST_SUB+=	KRB5=""
-.else
-CONFIGURE_ARGS+=--without-rlm_krb5
-PLIST_SUB+=	KRB5="@comment "
+PLIST_SUB+=    KRB5="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MEDIR} && empty(PORT_OPTIONS:MLDAP)
@@ -275,13 +263,6 @@ post-patch:
 		${WRKSRC}/raddb/certs/Makefile
 	@${REINPLACE_CMD} -Ee 's: ..R...sbindir./rc.radiusd : :' \
 		${WRKSRC}/scripts/all.mk
-
-# If we're using Heimdal from base, alter the LIBS variable
-.if ${PORT_OPTIONS:MHEIMDAL} && empty(PORT_OPTIONS:MHEIMDAL_PORT)
-	@${REINPLACE_CMD} -e 's|LIBS|KRB5LIBS|g' ${WRKSRC}/src/modules/rlm_krb5/configure
-	@${REINPLACE_CMD} -e 's|-lkrb5|$$(${KRB5_CONFIG})|g' \
-		${WRKSRC}/src/modules/rlm_krb5/configure
-.endif
 
 post-build:
 	@${FIND} ${WRKSRC}/build/lib -type f -name '*.so' -exec ${STRIP_CMD} {} \;
