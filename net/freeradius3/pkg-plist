@@ -72,6 +72,9 @@ include/freeradius/udpfromto.h
 %%LIBDIR%%/rlm_cache.a
 %%LIBDIR%%/rlm_cache.la
 %%LIBDIR%%/rlm_cache.so
+%%MEMCACHED%%%%LIBDIR%%/rlm_cache_memcached.a
+%%MEMCACHED%%%%LIBDIR%%/rlm_cache_memcached.la
+%%MEMCACHED%%%%LIBDIR%%/rlm_cache_memcached.so
 %%LIBDIR%%/rlm_cache_rbtree.a
 %%LIBDIR%%/rlm_cache_rbtree.la
 %%LIBDIR%%/rlm_cache_rbtree.so

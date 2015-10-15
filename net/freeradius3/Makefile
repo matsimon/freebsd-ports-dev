@@ -40,7 +40,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
-OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY \
+OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY MEMCACHED \
 			PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL \
 			EDIR PERL REST SSL_PORT DOCS SQLITE3
 OPTIONS_GROUP=		EXP
@@ -63,6 +63,7 @@ EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support
+MEMCACHED_DESC=		Support caching with memcached as backend
 YUBIKEY_DESC=		With Yubikey support
 
 EDIR_CONFIGURE_WITH=	with-edir
@@ -89,6 +90,9 @@ KERBEROS_CONFIGURE_ON=	--with-rlm_krb5 \
 LDAP_CONFIGURE_WITH=	rlm_ldap
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 LDAP_USE=		OPENLDAP=yes
+
+MEMCACHED_CONFIGURE_WITH=	rlm_cache_memcached
+MEMCACHED_LIB_DEPENDS=		libmemcached.so:${PORTSDIR}/databases/libmemcached
 
 MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
 MYSQL_USE=		MYSQL=yes
@@ -228,7 +232,6 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--without-rlm_sql_iodbc \
 		--without-rlm_sql_oracle \
 		--without-rlm_securid \
-		--without-rlm_cache_memcached \
 		--with-vmps \
 		--with-collectdclient-lib-dir=/dev/null
 
