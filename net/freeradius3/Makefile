@@ -40,7 +40,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
-OPTIONS_DEFINE=		USER LDAP MYSQL \
+OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY \
 			PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL \
 			EDIR PERL REST SSL_PORT DOCS SQLITE3
 OPTIONS_GROUP=		EXP
@@ -63,6 +63,7 @@ EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support
+YUBIKEY_DESC=		With Yubikey support
 
 EDIR_CONFIGURE_WITH=	with-edir
 
@@ -118,6 +119,9 @@ SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
 UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
+
+YUBIKEY_CONFIGURE_WITH=	rlm_yubikey
+YUBIKEY_LIB_DEPENDS=	libykclient.so:${PORTSDIR}/security/ykclient
 
 # Default requirements for rc script
 _REQUIRE=	NETWORKING SERVERS
@@ -222,7 +226,6 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--without-rlm_opendirectory \
 		--without-rlm_sql_db2 \
 		--without-rlm_sql_iodbc \
-		--without-rlm_yubikey \
 		--without-rlm_sql_oracle \
 		--without-rlm_securid \
 		--without-rlm_cache_memcached \

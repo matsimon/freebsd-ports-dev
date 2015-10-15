@@ -261,6 +261,9 @@ include/freeradius/udpfromto.h
 %%LIBDIR%%/rlm_wimax.a
 %%LIBDIR%%/rlm_wimax.la
 %%LIBDIR%%/rlm_wimax.so
+%%YUBIKEY%%%%LIBDIR%%/rlm_yubikey.a
+%%YUBIKEY%%%%LIBDIR%%/rlm_yubikey.la
+%%YUBIKEY%%%%LIBDIR%%/rlm_yubikey.so
 man/man1/radclient.1.gz
 man/man1/radeapclient.1.gz
 man/man1/radlast.1.gz
@@ -535,7 +538,7 @@ sbin/radmin
 %%EXAMPLESDIR%%/raddb/mods-available/unpack
 %%EXAMPLESDIR%%/raddb/mods-available/utf8
 %%EXAMPLESDIR%%/raddb/mods-available/wimax
-%%EXAMPLESDIR%%/raddb/mods-available/yubikey
+%%YUBIKEY%%%%EXAMPLESDIR%%/raddb/mods-available/yubikey
 %%EXAMPLESDIR%%/raddb/mods-config/README.rst
 %%EXAMPLESDIR%%/raddb/mods-config/attr_filter/access_challenge
 %%EXAMPLESDIR%%/raddb/mods-config/attr_filter/access_reject
