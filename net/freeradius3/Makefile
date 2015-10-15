@@ -229,10 +229,6 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--with-vmps \
 		--with-collectdclient-lib-dir=/dev/null
 
-.if ${ARCH} == amd64
-CONFIGURE_ARGS+=--with-pic
-.endif
-
 SUB_FILES+=	pkg-install pkg-message
 SUB_LIST+=	RADIUS_USER="${RADIUS_USER}" \
 		RADIUS_GROUP="${RADIUS_GROUP}" \
