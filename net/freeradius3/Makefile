@@ -42,7 +42,7 @@ PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY MEMCACHED \
 			PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL \
-			EDIR PERL REST SSL_PORT DOCS SQLITE3
+			PERL REST SSL_PORT DOCS SQLITE3
 OPTIONS_GROUP=		EXP
 OPTIONS_GROUP_EXP=	FIREBIRD FREETDS IDN
 OPTIONS_RADIO=		KRB
@@ -59,14 +59,11 @@ FIREBIRD_DESC=		With Firebird database support
 FREETDS_DESC=		With FreeTDS database support
 EXP_DESC=		Build experimental modules
 EXPERIMENTAL_DESC=	Build experimental modules
-EDIR_DESC=		Enable eDirectory support (implies LDAP)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support
 MEMCACHED_DESC=		Support caching with memcached as backend
 YUBIKEY_DESC=		With Yubikey support
-
-EDIR_CONFIGURE_WITH=	with-edir
 
 FIREBIRD_CONFIGURE_WITH=rlm_sql_firebird
 FIREBIRD_USE=		FIREBIRD=yes
@@ -87,7 +84,7 @@ KERBEROS_LIB_DEPENDS=	libkrb5.so.3:${PORTSDIR}/security/krb5
 KERBEROS_CONFIGURE_ON=	--with-rlm_krb5 \
 			--with-rlm-krb5-dir=${LOCALBASE}
 
-LDAP_CONFIGURE_WITH=	rlm_ldap
+LDAP_CONFIGURE_WITH=	rlm_ldap edir
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 LDAP_USE=		OPENLDAP=yes
 
@@ -151,10 +148,6 @@ GROUPS=		${RADIUS_GROUP}
 PLIST_SUB+=    KRB5=""
 .else
 PLIST_SUB+=    KRB5="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MEDIR} && empty(PORT_OPTIONS:MLDAP)
-PORT_OPTIONS+=	LDAP
 .endif
 
 # Firebird module is still experimental
