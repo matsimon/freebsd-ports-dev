@@ -102,7 +102,7 @@ PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
 PGSQL_USES=		pgsql
 
 PYTHON_USES=		python
-PYTHON_CONFIGURE_WITH=	with-rlm_python
+PYTHON_CONFIGURE_WITH=	rlm_python
 PYTHON_CONFIGURE_ON=	--with-rlm-python-lib-dir=${PYTHON_LIBDIR} \
 			--with-rlm-python-include-dir=${PYTHON_INCLUDEDIR}
 
