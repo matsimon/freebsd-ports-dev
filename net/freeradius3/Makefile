@@ -41,7 +41,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY MEMCACHED \
-			PGSQL UNIXODBC REDIS PYTHON \
+			LIBWBCLIENT PGSQL UNIXODBC REDIS PYTHON \
 			PERL REST SSL_PORT DOCS SQLITE3
 OPTIONS_GROUP=		EXP
 OPTIONS_GROUP_EXP=	EXPDB EXPMOD IDN
@@ -54,6 +54,7 @@ OPTIONS_SUB=	yes
 USER_DESC=		Run as user freeradius, group freeradius
 HEIMDAL_DESC=		With Heimdal Kerberos support
 HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
+LIBWBCLIENT_DESC=	Use Samba libwbclient for faster MS-CHAP
 UNIXODBC_DESC=		With unixODBC database support
 EXP_DESC=		Experimental modules
 EXPDB_DESC=		Experimental DB Backends (Firebird, FreeTDS)
@@ -84,6 +85,9 @@ KERBEROS_CONFIGURE_ON=	--with-rlm_krb5 \
 LDAP_CONFIGURE_WITH=	rlm_ldap edir
 LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 LDAP_USE=		OPENLDAP=yes
+
+LIBWBCLIENT_CONFIGURE_ON=	--with-winbind-include-dir=${LOCALBASE}/include/samba4
+LIBWBCLIENT_LIB_DEPENDS=	libwbclient.so:${PORTSDIR}/net/samba42
 
 MEMCACHED_CONFIGURE_WITH=	rlm_cache_memcached
 MEMCACHED_LIB_DEPENDS=		libmemcached.so:${PORTSDIR}/databases/libmemcached
