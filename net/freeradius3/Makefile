@@ -41,10 +41,10 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY MEMCACHED \
-			PGSQL UNIXODBC REDIS PYTHON EXPERIMENTAL \
+			PGSQL UNIXODBC REDIS PYTHON \
 			PERL REST SSL_PORT DOCS SQLITE3
 OPTIONS_GROUP=		EXP
-OPTIONS_GROUP_EXP=	FIREBIRD FREETDS IDN
+OPTIONS_GROUP_EXP=	EXPDB EXPMOD IDN
 OPTIONS_RADIO=		KRB
 OPTIONS_RADIO_KRB=	HEIMDAL HEIMDAL_PORT KERBEROS
 OPTIONS_DEFAULT=	HEIMDAL USER PERL
@@ -55,21 +55,18 @@ USER_DESC=		Run as user freeradius, group freeradius
 HEIMDAL_DESC=		With Heimdal Kerberos support
 HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
 UNIXODBC_DESC=		With unixODBC database support
-FIREBIRD_DESC=		With Firebird database support
-FREETDS_DESC=		With FreeTDS database support
-EXP_DESC=		Build experimental modules
-EXPERIMENTAL_DESC=	Build experimental modules
+EXP_DESC=		Experimental modules
+EXPDB_DESC=		Experimental DB Backends (Firebird, FreeTDS)
+EXPMOD_DESC=		Experimental modules (SMSOTP, Example)
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
 IDN_DESC=		International Domain Names support
 MEMCACHED_DESC=		Support caching with memcached as backend
 YUBIKEY_DESC=		With Yubikey support
 
-FIREBIRD_CONFIGURE_WITH=rlm_sql_firebird
-FIREBIRD_USE=		FIREBIRD=yes
-
-FREETDS_CONFIGURE_WITH=	rlm_freetds
-FREETDS_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
+EXPDB_CONFIGURE_WITH=	rlm_sql_firebird rlm_freetds
+EXPDB_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
+EXPDB_USE=		FIREBIRD=yes
 
 HEIMDAL_CONFIGURE_ON=	--with-rlm_krb5 --with-rlm-krb5-dir=/
 
@@ -150,38 +147,32 @@ PLIST_SUB+=    KRB5=""
 PLIST_SUB+=    KRB5="@comment "
 .endif
 
-# Firebird module is still experimental
-.if ${PORT_OPTIONS:MFIREBIRD} && empty(PORT_OPTIONS:MEXPERIMENTAL)
+.if ${PORT_OPTIONS:MEXPMOD}
 EXPM=		yes
+PLIST_SUB+=	EXPMOD=""
+.else
+PLIST_SUB+=	EXPMOD="@comment "
 .endif
 
-# freetds module is still experimental
-.if ${PORT_OPTIONS:MFREETDS} && empty(PORT_OPTIONS:MEXPERIMENTAL)
+.if ${PORT_OPTIONS:MEXPDB}
 EXPM=		yes
+PLIST_SUB+=	EXPDB=""
+.else
+PLIST_SUB+=	EXPDB="@comment "
 .endif
 
 # IDN module is still experimental
-.if ${PORT_OPTIONS:MIDN} && empty(PORT_OPTIONS:MEXPERIMENTAL)
+.if ${PORT_OPTIONS:MIDN}
 EXPM=		yes
 .endif
 
-# Notes:
-# --without-rlm_couchbase:
-# With 3.0.10 when any or one certain experimental modules were enabled it
-# wanted to configure rlm_couchbase.
-# As long as it's unsupported by the port, explicitely disable it.
-#
-# --without-rlm_ruby:
-# Last checked with 3.0.10: rlm_ruby's code contains a large warning that it
-# leaks memory. That's why it was explicitely disabled.
-.if ${PORT_OPTIONS:MEXPERIMENTAL} || defined(EXPM)
+# If at least one experimental module is enabled, extra parameter is needed
+.if defined(EXPM)
 CONFIGURE_ARGS+=--with-experimental-modules \
                 --without-rlm_couchbase \
 		--without-rlm_ruby
-PLIST_SUB+=	EXPM=""
 .else
 CONFIGURE_ARGS+=--without-experimental-modules
-PLIST_SUB+=	EXPM="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSSL_PORT}
