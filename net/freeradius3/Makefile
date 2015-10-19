@@ -23,7 +23,7 @@ LIB_DEPENDS=	libgdbm.so:${PORTSDIR}/databases/gdbm \
 LOGDIR?=	/var/log
 
 CONFLICTS_INSTALL=	gnu-radius-[0-9].* openradius-[0-9].* radiusd-cistron-[0-9].* \
-		freeradius-mysql-[0-9].* freeradius-[^3].*
+			freeradius-mysql-[0-9].* freeradius-[^3].*
 
 USE_RC_SUBR=	radiusd
 
@@ -40,9 +40,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
-OPTIONS_DEFINE=		USER LDAP MYSQL YUBIKEY MEMCACHED \
-			LIBWBCLIENT PGSQL UNIXODBC REDIS PYTHON \
-			PERL REST SSL_PORT DOCS SQLITE3
+OPTIONS_DEFINE=		DOCS LDAP LIBWBCLIENT MEMCACHED MYSQL PERL PGSQL PYTHON \
+			REDIS REST SQLITE3 SSL_PORT USER UNIXODBC YUBIKEY
 OPTIONS_GROUP=		EXP
 OPTIONS_GROUP_EXP=	EXPDB EXPMOD IDN
 OPTIONS_RADIO=		KRB
@@ -51,40 +50,40 @@ OPTIONS_DEFAULT=	HEIMDAL USER PERL
 
 OPTIONS_SUB=	yes
 
-USER_DESC=		Run as user freeradius, group freeradius
-HEIMDAL_DESC=		With Heimdal Kerberos support
-HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
-LIBWBCLIENT_DESC=	Use Samba libwbclient for faster MS-CHAP
-UNIXODBC_DESC=		With unixODBC database support
 EXP_DESC=		Experimental modules
 EXPDB_DESC=		Experimental DB Backends (Firebird, FreeTDS)
 EXPMOD_DESC=		Experimental modules (SMSOTP, Example)
+HEIMDAL_DESC=		With Heimdal Kerberos support
+HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
+IDN_DESC=		International Domain Names support
+LIBWBCLIENT_DESC=	Use Samba libwbclient for faster MS-CHAP
+MEMCACHED_DESC=		Support caching with memcached as backend
 REST_DESC=		Enable RESTful API support
 SSL_PORT_DESC=		Use OpenSSL from the ports collection
-IDN_DESC=		International Domain Names support
-MEMCACHED_DESC=		Support caching with memcached as backend
+UNIXODBC_DESC=		With unixODBC database support
+USER_DESC=		Run as user freeradius, group freeradius
 YUBIKEY_DESC=		With Yubikey support
 
 EXPDB_CONFIGURE_WITH=	rlm_sql_firebird rlm_freetds
 EXPDB_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 EXPDB_USE=		FIREBIRD=yes
 
-HEIMDAL_CONFIGURE_ON=	--with-rlm_krb5 --with-rlm-krb5-dir=/
+HEIMDAL_CONFIGURE_ON=		--with-rlm_krb5 --with-rlm-krb5-dir=/
 
-HEIMDAL_PORT_LIB_DEPENDS=libkrb5.so.26:${PORTSDIR}/security/heimdal
+HEIMDAL_PORT_LIB_DEPENDS=	libkrb5.so.26:${PORTSDIR}/security/heimdal
 HEIMDAL_PORT_CONFIGURE_ON=	--with-rlm_krb5 \
 				--with-rlm-krb5-dir=${LOCALBASE}
 
-IDN_CONFIGURE_WITH=	rlm_idn
-IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
+IDN_CONFIGURE_WITH=		rlm_idn
+IDN_LIB_DEPENDS=		libidn.so:${PORTSDIR}/dns/libidn
 
-KERBEROS_LIB_DEPENDS=	libkrb5.so.3:${PORTSDIR}/security/krb5
-KERBEROS_CONFIGURE_ON=	--with-rlm_krb5 \
-			--with-rlm-krb5-dir=${LOCALBASE}
+KERBEROS_LIB_DEPENDS=		libkrb5.so.3:${PORTSDIR}/security/krb5
+KERBEROS_CONFIGURE_ON=		--with-rlm_krb5 \
+				--with-rlm-krb5-dir=${LOCALBASE}
 
-LDAP_CONFIGURE_WITH=	rlm_ldap edir
-LDAP_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
-LDAP_USE=		OPENLDAP=yes
+LDAP_CONFIGURE_WITH=		rlm_ldap edir
+LDAP_LIB_DEPENDS=		libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+LDAP_USE=			OPENLDAP=yes
 
 LIBWBCLIENT_CONFIGURE_ON=	--with-winbind-include-dir=${LOCALBASE}/include/samba4
 LIBWBCLIENT_LIB_DEPENDS=	libwbclient.so:${PORTSDIR}/net/samba42
@@ -92,36 +91,36 @@ LIBWBCLIENT_LIB_DEPENDS=	libwbclient.so:${PORTSDIR}/net/samba42
 MEMCACHED_CONFIGURE_WITH=	rlm_cache_memcached
 MEMCACHED_LIB_DEPENDS=		libmemcached.so:${PORTSDIR}/databases/libmemcached
 
-MYSQL_CONFIGURE_WITH=	rlm_sql_mysql
-MYSQL_USE=		MYSQL=yes
+MYSQL_CONFIGURE_WITH=		rlm_sql_mysql
+MYSQL_USE=			MYSQL=yes
 
-PERL_CONFIGURE_WITH=	rlm_perl
-PERL_CONFIGURE_ON=	--with-perl
-PERL_USES=		perl5
+PERL_CONFIGURE_WITH=		rlm_perl
+PERL_CONFIGURE_ON=		--with-perl
+PERL_USES=			perl5
 
-PGSQL_CONFIGURE_WITH=	rlm_sql_postgresql
-PGSQL_USES=		pgsql
+PGSQL_CONFIGURE_WITH=		rlm_sql_postgresql
+PGSQL_USES=			pgsql
 
-PYTHON_USES=		python
-PYTHON_CONFIGURE_WITH=	rlm_python
-PYTHON_CONFIGURE_ON=	--with-rlm-python-lib-dir=${PYTHON_LIBDIR} \
-			--with-rlm-python-include-dir=${PYTHON_INCLUDEDIR}
+PYTHON_USES=			python
+PYTHON_CONFIGURE_WITH=		rlm_python
+PYTHON_CONFIGURE_ON=		--with-rlm-python-lib-dir=${PYTHON_LIBDIR} \
+				--with-rlm-python-include-dir=${PYTHON_INCLUDEDIR}
 
-REDIS_CONFIGURE_WITH=	rlm_redis rlm_rediswho
-REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
+REDIS_CONFIGURE_WITH=		rlm_redis rlm_rediswho
+REDIS_LIB_DEPENDS=		libhiredis.so:${PORTSDIR}/databases/hiredis
 
-REST_CONFIGURE_WITH=	rlm_rest libcurl=${LOCALBASE}
-REST_LIB_DEPENDS=	libjson-c.so:${PORTSDIR}/devel/json-c \
-			libcurl.so:${PORTSDIR}/ftp/curl
+REST_CONFIGURE_WITH=		rlm_rest libcurl=${LOCALBASE}
+REST_LIB_DEPENDS=		libjson-c.so:${PORTSDIR}/devel/json-c \
+				libcurl.so:${PORTSDIR}/ftp/curl
 
-SQLITE3_CONFIGURE_WITH=	rlm_sql_sqlite
-SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+SQLITE3_CONFIGURE_WITH=		rlm_sql_sqlite
+SQLITE3_LIB_DEPENDS=		libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
-UNIXODBC_CONFIGURE_WITH=rlm_sql_unixodbc
-UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
+UNIXODBC_CONFIGURE_WITH=	rlm_sql_unixodbc
+UNIXODBC_LIB_DEPENDS=		libodbc.so:${PORTSDIR}/databases/unixODBC
 
-YUBIKEY_CONFIGURE_WITH=	rlm_yubikey
-YUBIKEY_LIB_DEPENDS=	libykclient.so:${PORTSDIR}/security/ykclient
+YUBIKEY_CONFIGURE_WITH=		rlm_yubikey
+YUBIKEY_LIB_DEPENDS=		libykclient.so:${PORTSDIR}/security/ykclient
 
 # Default requirements for rc script
 _REQUIRE=	NETWORKING SERVERS
@@ -146,9 +145,9 @@ USERS=		${RADIUS_USER}
 GROUPS=		${RADIUS_GROUP}
 
 .if ${PORT_OPTIONS:MHEIMDAL} || ${PORT_OPTIONS:MHEIMDAL_PORT} || ${PORT_OPTIONS:MKERBEROS}
-PLIST_SUB+=    KRB5=""
+PLIST_SUB+=	 KRB5=""
 .else
-PLIST_SUB+=    KRB5="@comment "
+PLIST_SUB+=	KRB5="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MEXPMOD}
@@ -173,7 +172,7 @@ EXPM=		yes
 # If at least one experimental module is enabled, extra parameter is needed
 .if defined(EXPM)
 CONFIGURE_ARGS+=--with-experimental-modules \
-                --without-rlm_couchbase \
+		--without-rlm_couchbase \
 		--without-rlm_ruby
 .else
 CONFIGURE_ARGS+=--without-experimental-modules
