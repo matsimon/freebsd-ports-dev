@@ -41,7 +41,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=		DOCS LDAP LIBWBCLIENT MEMCACHED MYSQL PERL PGSQL PYTHON \
-			REDIS REST SQLITE3 SSL_PORT USER UNIXODBC YUBIKEY
+			REDIS REST SQLITE3 USER UNIXODBC YUBIKEY
 OPTIONS_GROUP=		EXP
 OPTIONS_GROUP_EXP=	EXPDB EXPMOD IDN
 OPTIONS_RADIO=		KRB
@@ -59,7 +59,6 @@ IDN_DESC=		International Domain Names support
 LIBWBCLIENT_DESC=	Use Samba libwbclient for faster MS-CHAP
 MEMCACHED_DESC=		Support caching with memcached as backend
 REST_DESC=		Enable RESTful API support
-SSL_PORT_DESC=		Use OpenSSL from the ports collection
 UNIXODBC_DESC=		With unixODBC database support
 USER_DESC=		Run as user freeradius, group freeradius
 YUBIKEY_DESC=		With Yubikey support
@@ -178,10 +177,6 @@ CONFIGURE_ARGS+=--with-experimental-modules \
 CONFIGURE_ARGS+=--without-experimental-modules
 .endif
 
-.if ${PORT_OPTIONS:MSSL_PORT}
-WITH_OPENSSL_PORT=yes
-.endif
-
 .include <bsd.port.pre.mk>
 
 # if we're installing, place sample configs into ${EXAMPLESDIR}
@@ -201,13 +196,9 @@ PLIST_SUB+=	PORTDOCS=""
 SUB_LIST+=	PORTDOCS=""
 .endif
 
-# This conditionality avoids -L/usr/lib in the radiusd build step when
-# building with base system OpenSSL
-.if ${OPENSSLLIB} != "/usr/lib"
-CONFIGURE_ARGS+=--with-openssl-libraries=${OPENSSLLIB}
-.endif
 CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--with-openssl-includes=${OPENSSLINC} \
+		--with-openssl-libraries=${OPENSSLLIB} \
 		--prefix=${PREFIX} --libdir=${PREFIX}/${FREERADIUS_LIBDIR} \
 		--localstatedir=/var \
 		--without-rlm_eap_ikev2 \
