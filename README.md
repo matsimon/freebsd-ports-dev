@@ -6,6 +6,8 @@ Ports maintained by Mathieu Simon
 
 - net-mgmt/lldpd
 
-## Contributions proposed
+## Contributions
 
+- net/tac_plus4
+- print/p5-Net-CUPS
 - sysutils/usb_modeswitch
