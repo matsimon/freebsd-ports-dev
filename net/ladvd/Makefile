@@ -3,9 +3,8 @@
 
 PORTNAME=	ladvd
 PORTVERSION=	1.1.0
+DISTVERSIONPREFIX=v
 CATEGORIES=	net
-MASTER_SITES=	GOOGLE_CODE \
-		http://blinkenlights.nl/software/ladvd/
 
 MAINTAINER=	sten@blinkenlights.nl
 COMMENT=	Minimal LLDP/CDP/EDP/FDP/NDP sender daemon
@@ -17,6 +16,8 @@ LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 USERS=		ladvd
 GROUPS=		${USERS}
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	sspans
 USES=		autoreconf libtool pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-chroot-dir=/var/empty
