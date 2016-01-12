@@ -31,7 +31,6 @@ USES=		gmake shebangfix tar:bzip2
 SHEBANG_FILES=	src/modules/rlm_counter/rad_counter scripts/sql/radsqlrelay
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
-CONFIGURE_ARGS=	--with-udpfromto
 # Prevent /root/.rnd leftover
 MAKE_ARGS+=	HOME=/dev/null
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -196,8 +195,9 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--without-rlm_sql_iodbc \
 		--without-rlm_sql_oracle \
 		--without-rlm_securid \
-		--with-vmps \
-		--with-collectdclient-lib-dir=/dev/null
+		--with-collectdclient-lib-dir=/dev/null \
+		--with-udpfromto \
+		--with-vmps
 
 SUB_FILES+=	pkg-install pkg-message
 SUB_LIST+=	RADDB_WORK="${WRKSRC}/raddb" \
