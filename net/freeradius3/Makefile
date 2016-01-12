@@ -54,7 +54,7 @@ EXP_DESC=		Experimental modules
 EXPDB_DESC=		Experimental DB Backends (Firebird, FreeTDS)
 EXPMOD_DESC=		Experimental modules (SMSOTP, Example)
 HEIMDAL_DESC=		With Heimdal Kerberos support
-HEIMDAL_PORT_DESC=	With Heimdal Kerberos from ports
+HEIMDAL_PORT_DESC=	With Heimdal Kerberos support from ports
 IDN_DESC=		International Domain Names support
 LIBWBCLIENT_DESC=	Use Samba libwbclient for faster MS-CHAP
 MEMCACHED_DESC=		Support caching with memcached as backend
@@ -67,7 +67,9 @@ EXPDB_CONFIGURE_WITH=	rlm_sql_firebird rlm_freetds
 EXPDB_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 EXPDB_USE=		FIREBIRD=yes
 
+# MIT must be be absent, else build fails. See upstream issue #1466
 HEIMDAL_CONFIGURE_ON=		--with-rlm_krb5 --with-rlm-krb5-dir=/
+HEIMDAL_CONFLICTS_BUILD=	krb5-[0-9].*
 
 HEIMDAL_PORT_LIB_DEPENDS=	libkrb5.so.26:${PORTSDIR}/security/heimdal
 HEIMDAL_PORT_CONFIGURE_ON=	--with-rlm_krb5 \
