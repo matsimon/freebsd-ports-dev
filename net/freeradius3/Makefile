@@ -41,12 +41,12 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB=	PORTVERSION=${DISTVERSION} LIBVER=0${PORTVERSION:C/\./0/g}
 
 OPTIONS_DEFINE=		DOCS LDAP LIBWBCLIENT MEMCACHED MYSQL PERL PGSQL PYTHON \
-			REDIS REST SQLITE3 USER UNIXODBC YUBIKEY
+			REDIS REST SQLITE3 UNIXODBC YUBIKEY
 OPTIONS_GROUP=		EXP
 OPTIONS_GROUP_EXP=	EXPDB EXPMOD IDN
 OPTIONS_RADIO=		KRB
 OPTIONS_RADIO_KRB=	HEIMDAL HEIMDAL_PORT KERBEROS
-OPTIONS_DEFAULT=	HEIMDAL USER PERL
+OPTIONS_DEFAULT=	HEIMDAL PERL
 
 OPTIONS_SUB=	yes
 
@@ -60,7 +60,6 @@ LIBWBCLIENT_DESC=	Use Samba libwbclient for faster MS-CHAP
 MEMCACHED_DESC=		Support caching with memcached as backend
 REST_DESC=		Enable RESTful API support
 UNIXODBC_DESC=		With unixODBC database support
-USER_DESC=		Run as user freeradius, group freeradius
 YUBIKEY_DESC=		With Yubikey support
 
 EXPDB_CONFIGURE_WITH=	rlm_sql_firebird rlm_freetds
@@ -132,19 +131,6 @@ PGSQL_VARS=	_REQUIRE+=postgresql
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MUSER}
-SUB_LIST+=	RUN_AS_USER="yes"
-.else
-SUB_LIST+=	RUN_AS_USER="no"
-.endif
-
-# User and group to use if USER option is chosen
-RADIUS_USER=	freeradius
-RADIUS_GROUP=	freeradius
-
-USERS=		${RADIUS_USER}
-GROUPS=		${RADIUS_GROUP}
-
 .if ${PORT_OPTIONS:MHEIMDAL} || ${PORT_OPTIONS:MHEIMDAL_PORT} || ${PORT_OPTIONS:MKERBEROS}
 PLIST_SUB+=	 KRB5=""
 .else
@@ -214,9 +200,7 @@ CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--with-collectdclient-lib-dir=/dev/null
 
 SUB_FILES+=	pkg-install pkg-message
-SUB_LIST+=	RADIUS_USER="${RADIUS_USER}" \
-		RADIUS_GROUP="${RADIUS_GROUP}" \
-		RADDB_WORK="${WRKSRC}/raddb" \
+SUB_LIST+=	RADDB_WORK="${WRKSRC}/raddb" \
 		RADDB="${PREFIX}/etc/raddb" \
 		LOGDIR="${LOGDIR}" \
 		LIBDIR="${PREFIX}/${FREERADIUS_LIBDIR}"

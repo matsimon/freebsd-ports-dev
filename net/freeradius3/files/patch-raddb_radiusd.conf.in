@@ -1,0 +1,13 @@
+--- raddb/radiusd.conf.in.orig	2016-01-12 15:18:28 UTC
++++ raddb/radiusd.conf.in
+@@ -436,8 +436,8 @@ security {
+ 	#  member.  This can allow for some finer-grained access
+ 	#  controls.
+ 	#
+-#	user = radius
+-#	group = radius
++	user = freeradius
++	group = freeradius
+ 
+ 	#  Core dumps are a bad thing.  This should only be set to
+ 	#  'yes' if you're debugging a problem with the server.
