@@ -72,20 +72,20 @@ HEIMDAL_CONFLICTS_BUILD=	krb5-[0-9].*
 
 HEIMDAL_PORT_LIB_DEPENDS=	libkrb5.so.26:${PORTSDIR}/security/heimdal
 HEIMDAL_PORT_CONFIGURE_ON=	--with-rlm_krb5 \
-				--with-rlm-krb5-dir=${LOCALBASE}
+				--with-rlm-krb5-dir=${PREFIX}
 
 IDN_CONFIGURE_WITH=		rlm_idn
 IDN_LIB_DEPENDS=		libidn.so:${PORTSDIR}/dns/libidn
 
 KERBEROS_LIB_DEPENDS=		libkrb5.so.3:${PORTSDIR}/security/krb5
 KERBEROS_CONFIGURE_ON=		--with-rlm_krb5 \
-				--with-rlm-krb5-dir=${LOCALBASE}
+				--with-rlm-krb5-dir=${PREFIX}
 
 LDAP_CONFIGURE_WITH=		rlm_ldap edir
 LDAP_LIB_DEPENDS=		libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 LDAP_USE=			OPENLDAP=yes
 
-LIBWBCLIENT_CONFIGURE_ON=	--with-winbind-include-dir=${LOCALBASE}/include/samba4
+LIBWBCLIENT_CONFIGURE_ON=	--with-winbind-include-dir=${PREFIX}/include/samba4
 LIBWBCLIENT_LIB_DEPENDS=	libwbclient.so:${PORTSDIR}/net/samba42
 
 MEMCACHED_CONFIGURE_WITH=	rlm_cache_memcached
@@ -109,7 +109,7 @@ PYTHON_CONFIGURE_ON=		--with-rlm-python-lib-dir=${PYTHON_LIBDIR} \
 REDIS_CONFIGURE_WITH=		rlm_redis rlm_rediswho
 REDIS_LIB_DEPENDS=		libhiredis.so:${PORTSDIR}/databases/hiredis
 
-REST_CONFIGURE_WITH=		rlm_rest libcurl=${LOCALBASE}
+REST_CONFIGURE_WITH=		rlm_rest libcurl=${PREFIX}
 REST_LIB_DEPENDS=		libjson-c.so:${PORTSDIR}/devel/json-c \
 				libcurl.so:${PORTSDIR}/ftp/curl
 
