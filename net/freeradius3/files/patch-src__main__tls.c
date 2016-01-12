@@ -1,6 +1,6 @@
---- ./src/main/tls.c.orig	2014-08-04 08:03:48.000000000 -0400
-+++ ./src/main/tls.c	2014-08-04 08:04:14.000000000 -0400
-@@ -63,8 +63,8 @@
+--- src/main/tls.c.orig	2015-10-05 18:22:28 UTC
++++ src/main/tls.c
+@@ -72,8 +72,8 @@ typedef struct libssl_defect {
  static libssl_defect_t libssl_defects[] =
  {
  	{

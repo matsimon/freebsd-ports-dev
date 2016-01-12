@@ -1,6 +1,6 @@
---- ./install-sh.orig	2014-05-13 12:44:10.000000000 -0400
-+++ ./install-sh	2014-05-13 12:44:43.000000000 -0400
-@@ -120,7 +120,7 @@
+--- install-sh.orig	2015-10-05 18:22:28 UTC
++++ install-sh
+@@ -120,7 +120,7 @@ if [ x"$dir_arg" != x ]; then
  		instcmd=:
  		chmodcmd=""
  	else
