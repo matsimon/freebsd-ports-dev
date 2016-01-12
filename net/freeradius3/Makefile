@@ -64,7 +64,7 @@ YUBIKEY_DESC=		With Yubikey support
 
 EXPDB_CONFIGURE_WITH=	rlm_sql_firebird rlm_freetds
 EXPDB_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
-EXPDB_USE=		FIREBIRD=yes
+EXPDB_USES=		firebird
 
 # MIT must be be absent, else build fails. See upstream issue #1466
 HEIMDAL_CONFIGURE_ON=		--with-rlm_krb5 --with-rlm-krb5-dir=/
