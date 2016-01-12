@@ -170,7 +170,7 @@ CONFIGURE_ARGS+=--without-experimental-modules
 # if we're installing, place sample configs into ${EXAMPLESDIR}
 MAKE_ARGS+=	raddbdir="${EXAMPLESDIR}/raddb" R=${STAGEDIR}
 
-FREERADIUS_LIBDIR=	lib/freeradius-${PORTVERSION}
+FREERADIUS_LIBDIR=	lib/freeradius
 PLIST_SUB+=	LIBDIR="${FREERADIUS_LIBDIR}"
 USE_LDCONFIG=	${PREFIX}/${FREERADIUS_LIBDIR}
 
