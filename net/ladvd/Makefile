@@ -10,6 +10,7 @@ MAINTAINER=	sten@blinkenlights.nl
 COMMENT=	Minimal LLDP/CDP/EDP/FDP/NDP sender daemon
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/doc/LICENSE
 
 LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 
@@ -22,7 +23,7 @@ USES=		autoreconf libtool pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-chroot-dir=/var/empty
 
-PORTDOCS=	*
+PORTDOCS=	README TODO HACKING
 USE_RC_SUBR=	ladvd
 SUB_FILES=	pkg-message
 
@@ -39,8 +40,7 @@ OPTIONS_DEFINE=	DOCS
 CFLAGS_amd64=   -fPIC
 .endif
 
-post-patch-DOCS-off:
-	@@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA|install-data-am:|' \
-		${WRKSRC}/doc/Makefile.in
+post-patch:
+	${REINPLACE_CMD} -e 's|LICENSE||' ${WRKSRC}/doc/Makefile.am
 
 .include <bsd.port.mk>
